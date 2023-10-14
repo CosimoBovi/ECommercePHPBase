@@ -29,7 +29,7 @@
 
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username);
     
-        $stmt = $pdo->prepare("CALL FindUser(:username)");
+        $stmt = $pdo->prepare("CALL FindPasswordByUsername(:username)");
 
         $stmt->bindParam(':username', $user);
         $stmt->execute();
@@ -38,7 +38,7 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
       
         if ($row) {
-            $storedHash = $row['Password'];
+            $storedHash = $row['password'];
 
             if (password_verify($pass, $storedHash)) {
                 echo "Password corretta. Accesso consentito.";
