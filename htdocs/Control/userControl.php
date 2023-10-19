@@ -5,11 +5,13 @@
     
     if($_POST["action"]=="register"){
 
-        salvaUtente($_POST["user"],$_POST["pass"]);
+        $errore = salvaUtente($_POST["user"],$_POST["pass"]);
+        echo json_encode(['errore'=>$errore]);
     }
     if($_POST["action"]=="login"){
 
-        login($_POST["user"],$_POST["pass"]);
+        $errore = login($_POST["user"],$_POST["pass"]);
+        echo json_encode(['errore'=>$errore]);
     }
 
 ?>

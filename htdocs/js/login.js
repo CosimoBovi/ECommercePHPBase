@@ -14,10 +14,17 @@ async function register(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(dati)
-    }).then((response) => response.text())
+    }).then((response) => response.json())
     .then((data) => {
-      
-        location.href="index.php";
+        if(data.errore==0){
+            alert("successo");
+            location.href="index.php";
+        }else if(data.errore==1){
+            alert("nome utente esistente");
+        }else{
+            alert("errore sconosciuto");
+        }
+        
     })
         
 }
@@ -38,10 +45,15 @@ async function login(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(dati)
-    }).then((response) => response.text())
+    }).then((response) => response.json())
     .then((data) => {
-      
-        alert(data);
+        if(data.errore==0){
+            location.href="index.php";
+        }else if(data.errore==1){
+            alert("password errata")
+        }else if(data.errore==2){
+            alert("nome utente errato");
+        }
     })
         
 }

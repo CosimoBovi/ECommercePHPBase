@@ -6,7 +6,12 @@
     </button>
     <div class="collapse navbar-collapse " id="collapsibleNavbar">
       <ul class="navbar-nav mx-auto">
-        
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">Entra</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Entra</a>
         </li>

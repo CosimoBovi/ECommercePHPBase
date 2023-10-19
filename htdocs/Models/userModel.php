@@ -5,6 +5,7 @@
     $username = "root";
     $password = "";
     $dbname = "dbecommerce";
+    session_start();
 
     function salvaUtente($user,$pass){
         global  $servername,$username,$dbname;
@@ -19,9 +20,23 @@
         // Associazione dei valori ai parametri
         $stmt->bindParam(':username', $user);
         $stmt->bindParam(':password', $hashedPassword);
-    
-        // Esecuzione della procedura memorizzata
-        $stmt->execute();
+        
+        $errore=0;
+        try{
+            // Esecuzione della procedura memorizzata
+            $stmt->execute();
+        
+        }catch (PDOException $e) {
+            if ($e->errorInfo[1] === 1062) {
+                $errore=1;
+            } else {
+                $errore=2;
+            }
+        }
+
+        $pdo=null;
+
+        return $errore;
     }
 
     function login($user,$pass){
@@ -41,14 +56,17 @@
             $storedHash = $row['password'];
 
             if (password_verify($pass, $storedHash)) {
-                echo "Password corretta. Accesso consentito.";
+                
+                $_SESSION["username"] = $user;
+                return 0;
             } else {
-                echo "Password errata. Accesso negato.";
+                return 1;
             }
         } else {
-            echo "Utente non trovato nel database.";
+            return 2;
         }
 
+        $pdo=null;
     }
 
 ?>
