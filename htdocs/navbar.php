@@ -1,3 +1,5 @@
+<script src="./js/navbar.js"></script>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">E-Commerce</a>
@@ -5,16 +7,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="collapsibleNavbar">
-      <ul class="navbar-nav mx-auto">
+      <ul class="navbar-nav mx-auto" id="listaNavbar" onload="visualizzaNavbar()">
         <li class="nav-item">
-          <a class="nav-link" href="login.php">Home</a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Entra</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Entra</a>
-        </li>
+
+
         
         <!--
         <li class="nav-item dropdown">
