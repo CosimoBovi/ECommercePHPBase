@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 24, 2023 alle 10:04
--- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.2.0
+-- Creato il: Ott 24, 2023 alle 12:04
+-- Versione del server: 10.4.21-MariaDB
+-- Versione PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,35 +25,48 @@ DELIMITER $$
 --
 -- Procedure
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCart` (IN `user_id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FindPasswordByUsername` (IN `username` VARCHAR(255))  BEGIN
+    DECLARE user_password VARCHAR(255);
+
+    SELECT Password
+    FROM Users
+    WHERE Username = username;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllUserTypes` ()  BEGIN
+    SELECT * FROM UserTypes;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCart` (IN `user_id` INT)  BEGIN
     INSERT INTO Cart (User_ID) VALUES (user_id);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCategory` (IN `name` VARCHAR(255), IN `description` TEXT, IN `parent_id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCategory` (IN `name` VARCHAR(255), IN `description` TEXT, IN `parent_id` INT)  BEGIN
     INSERT INTO Categories (Name, Description, Parent_ID) VALUES (name, description, parent_id);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCategoryProduct` (IN `product_id` INT, IN `category_id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCategoryProduct` (IN `product_id` INT, IN `category_id` INT)  BEGIN
     INSERT INTO CategoriesProducts (Product_ID, Category_ID) VALUES (product_id, category_id);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertOrder` (IN `customer_id` INT, IN `order_date` DATE)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertOrder` (IN `customer_id` INT, IN `order_date` DATE)  BEGIN
     INSERT INTO Orders (Customer_ID, OrderDate) VALUES (customer_id, order_date);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProduct` (IN `name` VARCHAR(255), IN `description` TEXT, IN `unit_price` DECIMAL(10,2), IN `user_seller_id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProduct` (IN `name` VARCHAR(255), IN `description` TEXT, IN `unit_price` DECIMAL(10,2), IN `user_seller_id` INT)  BEGIN
     INSERT INTO Products (Name, Description, UnitPrice, UserSeller_ID) VALUES (name, description, unit_price, user_seller_id);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProductOrder` (IN `order_id` INT, IN `product_id` INT, IN `quantity` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProductOrder` (IN `order_id` INT, IN `product_id` INT, IN `quantity` INT)  BEGIN
     INSERT INTO ProductsOrders (Order_ID, Product_ID, Quantity) VALUES (order_id, product_id, quantity);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUser` (IN `username` VARCHAR(255), IN `password` VARCHAR(255), IN `usertype_id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUser` (IN `username` VARCHAR(255), IN `password` VARCHAR(255), IN `usertype_id` INT)  BEGIN
     INSERT INTO Users (Username, Password, UserType_ID) VALUES (username, password, usertype_id);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUserType` (IN `type` VARCHAR(255), IN `description` TEXT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUserType` (IN `type` VARCHAR(255), IN `description` TEXT)  BEGIN
     INSERT INTO UserTypes (Type, Description) VALUES (type, description);
 END$$
 
@@ -78,8 +91,8 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `categories` (
   `Category_ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Description` text DEFAULT NULL,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `Parent_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -115,8 +128,8 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `products` (
   `Product_ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Description` text DEFAULT NULL,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `UnitPrice` decimal(10,2) NOT NULL,
   `UserSeller_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -142,10 +155,17 @@ CREATE TABLE `productsorders` (
 
 CREATE TABLE `users` (
   `User_ID` int(11) NOT NULL,
-  `Username` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL,
+  `Username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `UserType_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `users`
+--
+
+INSERT INTO `users` (`User_ID`, `Username`, `Password`, `UserType_ID`) VALUES
+(4, 'test', '$2y$10$jdSBtgiNeGkTCuv/D9BS7.ALGhBIvIoGLSoO5AkWKvjVGO/YfC7te', 1);
 
 -- --------------------------------------------------------
 
@@ -155,9 +175,17 @@ CREATE TABLE `users` (
 
 CREATE TABLE `usertypes` (
   `UserType_ID` int(11) NOT NULL,
-  `Type` varchar(255) NOT NULL,
-  `Description` text DEFAULT NULL
+  `Type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` text COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `usertypes`
+--
+
+INSERT INTO `usertypes` (`UserType_ID`, `Type`, `Description`) VALUES
+(1, 'Buyer', 'Represents a user who makes purchases.'),
+(2, 'Seller', 'Represents a user who sells products.');
 
 --
 -- Indici per le tabelle scaricate
@@ -265,13 +293,13 @@ ALTER TABLE `productsorders`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `usertypes`
 --
 ALTER TABLE `usertypes`
-  MODIFY `UserType_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserType_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Limiti per le tabelle scaricate

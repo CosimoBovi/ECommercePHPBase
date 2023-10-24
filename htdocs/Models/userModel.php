@@ -7,37 +7,40 @@
     $dbname = "dbecommerce";
     session_start();
 
-    function salvaUtente($user,$pass){
-        global  $servername,$username,$dbname;
-
-        $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username);
+    function salvaUtente($user, $pass, $usertypeid) {
+        global $servername, $username, $dbname;
     
-        $hashedPassword = password_hash($pass,PASSWORD_DEFAULT);
-
-        // Preparazione della query per chiamare la procedura memorizzata
-        $stmt = $pdo->prepare("CALL InsertUser(:username, :password)");
+        try {
+            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-        // Associazione dei valori ai parametri
-        $stmt->bindParam(':username', $user);
-        $stmt->bindParam(':password', $hashedPassword);
-        
-        $errore=0;
-        try{
+            $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+    
+            // Preparazione della query per chiamare la procedura memorizzata
+            $stmt = $pdo->prepare("CALL InsertUser(:username, :password, :usertypeid)");
+    
+            // Associazione dei valori ai parametri
+            $stmt->bindParam(':username', $user);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':usertypeid', $usertypeid);
+    
+            $errore = 0;
+    
             // Esecuzione della procedura memorizzata
             $stmt->execute();
-        
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             if ($e->errorInfo[1] === 1062) {
-                $errore=1;
+                $errore = 1; // Violazione di unicità (username duplicato)
             } else {
-                $errore=2;
+                $errore = 2; // Altro errore
             }
+    
+            $pdo = null;
         }
-
-        $pdo=null;
-
+    
         return $errore;
     }
+    
 
     function login($user,$pass){
         global  $servername,$username,$dbname;
@@ -53,7 +56,7 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
       
         if ($row) {
-            $storedHash = $row['password'];
+            $storedHash = $row['Password'];
 
             if (password_verify($pass, $storedHash)) {
                 

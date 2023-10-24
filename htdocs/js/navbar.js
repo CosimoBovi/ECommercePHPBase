@@ -8,7 +8,7 @@ async function visualizzaNavbar(){
 
         user = await testLogin();
 
-        if(user!=null){
+        if(user!=''){
             generaInferfacciaUtente(user);
         }
 
@@ -35,7 +35,7 @@ async function testLogin(){
     }).then((response) => response.json())
     .then((data) => {
         
-        ritorno= data;
+        ritorno= data.username;
         
     })
 
@@ -46,13 +46,23 @@ async function testLogin(){
 
 function generaInferfacciaUtente(user){
 
-    let newLi = document.createElement("li");
-    newLi.classList.add("nav-item");
+    let newWelcomeLi = document.createElement("li");
+    newWelcomeLi.classList.add("nav-item");
+    let newSpan = document.createElement("span");
+    newSpan.classList.add("nav-link");
+    newSpan.innerText="Benvenuto " + user;
+
+    newWelcomeLi.appendChild(newSpan);
+
+    document.getElementById("RightNavList").appendChild(newWelcomeLi);
+
+    let newLogoutLi = document.createElement("li");
+    newLogoutLi.classList.add("nav-item");
     let newA = document.createElement("a");
     newA.classList.add("nav-link");
     newA.href="./Control/userControl.php?logout=logout";
     newA.innerText="Logout";
 
-    newLi.appendChild(newA);
-    document.getElementById("listaNavbar").appendChild(newLi);
+    newLogoutLi.appendChild(newA);
+    document.getElementById("RightNavList").appendChild(newLogoutLi);
 }

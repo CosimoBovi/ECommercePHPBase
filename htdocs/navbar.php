@@ -7,26 +7,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="collapsibleNavbar">
-      <ul class="navbar-nav mx-auto" id="listaNavbar" onload="visualizzaNavbar()">
+      <ul class="navbar-nav me-auto" id="listaNavbar" onload="visualizzaNavbar()">
         <li class="nav-item">
           <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Entra</a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" id="RightNavList">
 
-
-        
-        <!--
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Link</a></li>
-            <li><a class="dropdown-item" href="#">Another link</a></li>
-            <li><a class="dropdown-item" href="#">A third link</a></li>
-          </ul>
-        </li>
-        -->
       </ul>
     </div>
   </div>

@@ -6,7 +6,7 @@
     if(isset($_POST)){
         if($_POST["action"]=="register"){
 
-            $errore = salvaUtente($_POST["user"],$_POST["pass"]);
+            $errore = salvaUtente($_POST["user"],$_POST["pass"],$_POST["userTypeId"]);
             echo json_encode(['errore'=>$errore]);
         }
         if($_POST["action"]=="login"){
@@ -19,7 +19,7 @@
             if(isset($_SESSION["username"])){
                 echo json_encode(['username'=>$_SESSION["username"]]) ;
             }else{
-                echo null;
+                echo json_encode(['username'=>'']) ;
             }
 
         }
