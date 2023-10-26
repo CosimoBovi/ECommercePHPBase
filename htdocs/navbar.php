@@ -11,9 +11,7 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Entra</a>
-        </li>
+       
       </ul>
       <ul class="nav navbar-nav navbar-right" id="RightNavList">
 

@@ -1,7 +1,8 @@
-function init(){
 
+document.addEventListener("DOMContentLoaded", function() {
     visualizzaNavbar();
-}
+    
+});
 
 
 async function visualizzaNavbar(){
@@ -10,6 +11,8 @@ async function visualizzaNavbar(){
 
         if(user!=''){
             generaInferfacciaUtente(user);
+        }else{
+            generaLogin();
         }
 
 
@@ -65,4 +68,17 @@ function generaInferfacciaUtente(user){
 
     newLogoutLi.appendChild(newA);
     document.getElementById("RightNavList").appendChild(newLogoutLi);
+}
+
+function generaLogin(){
+
+    let newLoginLi = document.createElement("li");
+    newLoginLi.classList.add("nav-item");
+    let newA = document.createElement("a");
+    newA.classList.add("nav-link");
+    newA.href="./login.php";
+    newA.innerText="Entra";
+
+    newLoginLi.appendChild(newA);
+    document.getElementById("RightNavList").appendChild(newLoginLi);
 }

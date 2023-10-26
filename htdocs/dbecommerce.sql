@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 24, 2023 alle 12:04
+-- Creato il: Ott 26, 2023 alle 10:04
 -- Versione del server: 10.4.21-MariaDB
 -- Versione PHP: 8.0.10
 
@@ -38,6 +38,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllUserTypes` ()  BEGIN
     SELECT * FROM UserTypes;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetImageURLByID` (IN `image_id` INT)  BEGIN
+    SELECT Image_URL
+    FROM product_images
+    WHERE ImageID = image_id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetImageURLsByProductID` (IN `product_id` INT)  BEGIN
+    SELECT Image_URL
+    FROM product_images
+    WHERE ProductID = product_id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCart` (IN `user_id` INT)  BEGIN
     INSERT INTO Cart (User_ID) VALUES (user_id);
 END$$
@@ -56,6 +68,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProduct` (IN `name` VARCHAR(255), IN `description` TEXT, IN `unit_price` DECIMAL(10,2), IN `user_seller_id` INT)  BEGIN
     INSERT INTO Products (Name, Description, UnitPrice, UserSeller_ID) VALUES (name, description, unit_price, user_seller_id);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProductImage` (IN `product_id` INT, IN `image_url` VARCHAR(255))  BEGIN
+    INSERT INTO product_images (ProductID, Image_URL)
+    VALUES (product_id, image_url);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProductOrder` (IN `order_id` INT, IN `product_id` INT, IN `quantity` INT)  BEGIN
@@ -150,6 +167,18 @@ CREATE TABLE `productsorders` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `image_id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `users`
 --
 
@@ -236,6 +265,13 @@ ALTER TABLE `productsorders`
   ADD KEY `Product_ID` (`Product_ID`);
 
 --
+-- Indici per le tabelle `product_images`
+--
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
@@ -290,10 +326,16 @@ ALTER TABLE `productsorders`
   MODIFY `ProductOrder_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `product_images`
+--
+ALTER TABLE `product_images`
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `usertypes`
@@ -342,6 +384,12 @@ ALTER TABLE `products`
 ALTER TABLE `productsorders`
   ADD CONSTRAINT `productsorders_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `orders` (`Order_ID`),
   ADD CONSTRAINT `productsorders_ibfk_2` FOREIGN KEY (`Product_ID`) REFERENCES `products` (`Product_ID`);
+
+--
+-- Limiti per la tabella `product_images`
+--
+ALTER TABLE `product_images`
+  ADD CONSTRAINT `product_images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`Product_ID`);
 
 --
 -- Limiti per la tabella `users`
