@@ -17,10 +17,14 @@
 
         if($_POST["action"]=="controllaLogin"){
             if(isset($_SESSION["username"])){
-                echo json_encode(['username'=>$_SESSION["username"]]) ;
+                echo json_encode(['username'=>$_SESSION["username"], 'userType'=>$_SESSION["userType"]]) ;
             }else{
-                echo json_encode(['username'=>'']) ;
+                echo json_encode(['username'=>'','userType'=>'']) ;
             }
+        }
+
+        if($_POST["action"]=="getUserType"){
+
 
         }
     }

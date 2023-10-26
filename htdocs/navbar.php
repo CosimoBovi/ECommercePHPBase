@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="collapsibleNavbar">
-      <ul class="navbar-nav me-auto" id="listaNavbar" onload="visualizzaNavbar()">
+      <ul class="navbar-nav me-auto" id="LeftNavList" onload="visualizzaNavbar()">
         <li class="nav-item">
           <a class="nav-link" href="index.php">Home</a>
         </li>

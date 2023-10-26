@@ -57,10 +57,20 @@
       
         if ($row) {
             $storedHash = $row['Password'];
-
+            echo $row['Password'];
             if (password_verify($pass, $storedHash)) {
                 
                 $_SESSION["username"] = $user;
+
+                $stmt = $pdo->prepare("CALL GetUserTypeByName(:username)");
+
+                $stmt->bindParam(':username', $user);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $_SESSION["userType"]=$row["type"];
+                
+
                 return 0;
             } else {
                 return 1;

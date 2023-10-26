@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 26, 2023 alle 10:04
+-- Creato il: Ott 26, 2023 alle 14:01
 -- Versione del server: 10.4.21-MariaDB
 -- Versione PHP: 8.0.10
 
@@ -48,6 +48,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `GetImageURLsByProductID` (IN `produ
     SELECT Image_URL
     FROM product_images
     WHERE ProductID = product_id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetUserTypeByName` (IN `username` VARCHAR(255))  BEGIN
+    SELECT UserTypes.type
+    FROM Users
+    JOIN UserTypes ON Users.UserType_ID  = UserTypes.UserType_ID 
+    WHERE Users.Username = username;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCart` (IN `user_id` INT)  BEGIN
@@ -194,7 +201,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`User_ID`, `Username`, `Password`, `UserType_ID`) VALUES
-(4, 'test', '$2y$10$jdSBtgiNeGkTCuv/D9BS7.ALGhBIvIoGLSoO5AkWKvjVGO/YfC7te', 1);
+(4, 'test', '$2y$10$jdSBtgiNeGkTCuv/D9BS7.ALGhBIvIoGLSoO5AkWKvjVGO/YfC7te', 1),
+(9, 'utente', '$2y$10$PWXSgY2XSuTujYPL4faJ7utXCCugueKHVHmx6eT0O2EnigabFEska', 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +343,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `usertypes`

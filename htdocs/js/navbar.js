@@ -9,14 +9,16 @@ async function visualizzaNavbar(){
 
         user = await testLogin();
 
-        if(user!=''){
-            generaInferfacciaUtente(user);
+        if(user.username!=''){
+            generaLogout(user.username);
+            generaNavbar(user.userType);
         }else{
             generaLogin();
         }
-
-
 }
+
+
+
 
 
 
@@ -38,7 +40,7 @@ async function testLogin(){
     }).then((response) => response.json())
     .then((data) => {
         
-        ritorno= data.username;
+        ritorno= data;
         
     })
 
@@ -47,13 +49,14 @@ async function testLogin(){
 }
 
 
-function generaInferfacciaUtente(user){
+
+function generaLogout(username){
 
     let newWelcomeLi = document.createElement("li");
     newWelcomeLi.classList.add("nav-item");
     let newSpan = document.createElement("span");
     newSpan.classList.add("nav-link");
-    newSpan.innerText="Benvenuto " + user;
+    newSpan.innerText="Benvenuto " + username;
 
     newWelcomeLi.appendChild(newSpan);
 
@@ -68,6 +71,39 @@ function generaInferfacciaUtente(user){
 
     newLogoutLi.appendChild(newA);
     document.getElementById("RightNavList").appendChild(newLogoutLi);
+}
+
+
+function generaNavbar(userType){
+
+    if(userType=="Buyer"){
+
+        generaNavbarBuyer();
+    }else if(userType=="Seller"){
+
+        generaNavbarSeller();
+    }
+
+   
+}
+
+
+function generaNavbarBuyer(){
+
+    
+}
+
+function generaNavbarSeller(){
+
+    let newLi = document.createElement("li");
+    newLi.classList.add("nav-item");
+    let newA = document.createElement("a");
+    newA.classList.add("nav-link");
+    newA.href="./addProducts.php";
+    newA.innerText="Aggiungi Prodotto";
+
+    newLi.appendChild(newA);
+    document.getElementById("LeftNavList").appendChild(newLi);
 }
 
 function generaLogin(){
