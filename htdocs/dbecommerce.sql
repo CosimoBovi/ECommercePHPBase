@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 26, 2023 alle 14:01
+-- Creato il: Ott 27, 2023 alle 12:00
 -- Versione del server: 10.4.21-MariaDB
 -- Versione PHP: 8.0.10
 
@@ -25,13 +25,10 @@ DELIMITER $$
 --
 -- Procedure
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `FindPasswordByUsername` (IN `username` VARCHAR(255))  BEGIN
-    DECLARE user_password VARCHAR(255);
-
-    SELECT Password
-    FROM Users
-    WHERE Username = username;
-
+CREATE DEFINER=`root`@`localhost` PROCEDURE `FindUserByUsername` (IN `p_username` VARCHAR(255))  BEGIN
+    SELECT *
+    FROM users
+    WHERE Username = p_username;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetAllUserTypes` ()  BEGIN
@@ -73,8 +70,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertOrder` (IN `customer_id` INT,
     INSERT INTO Orders (Customer_ID, OrderDate) VALUES (customer_id, order_date);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProduct` (IN `name` VARCHAR(255), IN `description` TEXT, IN `unit_price` DECIMAL(10,2), IN `user_seller_id` INT)  BEGIN
-    INSERT INTO Products (Name, Description, UnitPrice, UserSeller_ID) VALUES (name, description, unit_price, user_seller_id);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProduct` (IN `productName` VARCHAR(255), IN `productDescription` TEXT, IN `productPrice` DECIMAL(10,2), IN `userSellerID` INT)  BEGIN
+  -- Inserisci il nuovo prodotto
+  INSERT INTO products (Name, Description, UnitPrice, UserSeller_ID)
+  VALUES (productName, productDescription, productPrice, userSellerID);
+
+  -- Ottieni l'ID dell'ultimo prodotto inserito
+  SELECT MAX(Product_ID) AS newProductID FROM products;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertProductImage` (IN `product_id` INT, IN `image_url` VARCHAR(255))  BEGIN
@@ -202,7 +204,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`User_ID`, `Username`, `Password`, `UserType_ID`) VALUES
 (4, 'test', '$2y$10$jdSBtgiNeGkTCuv/D9BS7.ALGhBIvIoGLSoO5AkWKvjVGO/YfC7te', 1),
-(9, 'utente', '$2y$10$PWXSgY2XSuTujYPL4faJ7utXCCugueKHVHmx6eT0O2EnigabFEska', 1);
+(9, 'utente', '$2y$10$PWXSgY2XSuTujYPL4faJ7utXCCugueKHVHmx6eT0O2EnigabFEska', 1),
+(10, 'venditore', '$2y$10$HQhnLZWXD4lp5YJ4wqiFAOHS6CmoVnLNNPRfkNYWKS9g.uOc1rDGy', 2);
 
 -- --------------------------------------------------------
 
@@ -325,7 +328,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT per la tabella `products`
 --
 ALTER TABLE `products`
-  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `productsorders`
@@ -343,7 +346,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `usertypes`
