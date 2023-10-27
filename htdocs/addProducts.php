@@ -7,7 +7,7 @@
     <div class="row w-100">
     <div class="col-md-3"></div>
     <div class="col-md-6 justify-content-center">
-        <form>
+        <form id="productForm">
             <label class="w-25">Nome del Prodotto: </label>
             <input type="text" id="productName" class="w-100 my-2">
 
@@ -16,9 +16,6 @@
 
             <label class="w-25">Prezzo: </label>
             <input type="number" id="productPrice" class="w-100 my-2">
-
-            <label class="w-25">ID del Venditore: </label>
-            <input type="text" id="sellerID" class="w-100 my-2">
 
             <label class="w-25">Allega Immagini: </label>
             <input type="file" id="productImages" class="w-100 my-2" accept="image/*" multiple>

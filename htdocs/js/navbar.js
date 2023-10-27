@@ -26,7 +26,7 @@ async function visualizzaNavbar(){
 async function testLogin(){
     let dati={};
     let ritorno=null;
-    dati.action="controllaLogin";
+    dati.action="userInfo";
     url="./Control/userControl.php";
 
     let obj = await fetch(url,

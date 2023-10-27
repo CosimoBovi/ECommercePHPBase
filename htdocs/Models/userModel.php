@@ -47,7 +47,7 @@
 
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username);
     
-        $stmt = $pdo->prepare("CALL FindPasswordByUsername(:username)");
+        $stmt = $pdo->prepare("CALL FindUserByUsername(:username)");
 
         $stmt->bindParam(':username', $user);
         $stmt->execute();
@@ -57,11 +57,12 @@
       
         if ($row) {
             $storedHash = $row['Password'];
-            echo $row['Password'];
+          
             if (password_verify($pass, $storedHash)) {
                 
                 $_SESSION["username"] = $user;
-
+                $_SESSION["userID"]=$row["User_ID"];
+                
                 $stmt = $pdo->prepare("CALL GetUserTypeByName(:username)");
 
                 $stmt->bindParam(':username', $user);
@@ -69,6 +70,7 @@
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 $_SESSION["userType"]=$row["type"];
+                
                 
 
                 return 0;

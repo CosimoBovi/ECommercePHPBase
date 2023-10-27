@@ -15,11 +15,11 @@
             echo json_encode(['errore'=>$errore]);
         }
 
-        if($_POST["action"]=="controllaLogin"){
+        if($_POST["action"]=="userInfo"){
             if(isset($_SESSION["username"])){
-                echo json_encode(['username'=>$_SESSION["username"], 'userType'=>$_SESSION["userType"]]) ;
+                echo json_encode(['userID'=>$_SESSION["userID"],   'username'=>$_SESSION["username"], 'userType'=>$_SESSION["userType"]]) ;
             }else{
-                echo json_encode(['username'=>'','userType'=>'']) ;
+                echo json_encode(['userID'=>'','username'=>'','userType'=>'']) ;
             }
         }
 
