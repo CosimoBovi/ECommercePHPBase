@@ -8,10 +8,10 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
 
 # Indice
 
-1. [Introduzione a XAMPP](introduzione-a-xampp.md)
-2. [Impostazione del sito](impostazione-del-sito.md)
-   - 2.1. [Header](header.md)
-   2.2. [Navbar](navbar.md)
-   2.3. [Footer](footer.md)
-   2.4. [Index](index.md)
-   2.5. [Require e Include in PHP](require-include-php.md)
+- [Introduzione a XAMPP](introduzione-a-xampp.md)
+- [Impostazione del sito](impostazione-del-sito.md)
+   - [Header](header.md)
+   - [Navbar](navbar.md)
+   - [Footer](footer.md)
+   - [Index](index.md)
+   - [Require e Include in PHP](require-include-php.md)
