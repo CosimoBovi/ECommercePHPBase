@@ -8,7 +8,7 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
 
 # Indice
 
-- [Introduzione a XAMPP](Guide/xampp.md)
+- [Introduzione a XAMPP](Guide/Xampp.md)
 - [Impostazione del sito](impostazione-del-sito.md)
    - [Header](header.md)
    - [Navbar](navbar.md)
