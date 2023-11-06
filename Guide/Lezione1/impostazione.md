@@ -16,16 +16,17 @@ Vediamo ora come costruire un'esempio di pagina iniziale del nostro sito interne
 
 ```
 
-Questo codice utilizza PHP, un linguaggio di programmazione spesso combinato con HTML per creare pagine web dinamiche. La parte PHP inizia e termina con `<?php` e `?>`, e viene utilizzata per includere il contenuto di tre file HTML diversi all'interno di una pagina web.
 
-- La prima riga `<?php include_once "header.html" ?>` sta dicendo al server web di includere il contenuto del file "header.html" all'interno della pagina. Di solito, l'intestazione contiene elementi come il logo e il titolo del sito.
+Questo codice PHP è utilizzato per comporre una pagina web combinando il contenuto da diversi file PHP. Ogni parte svolge un ruolo specifico:
 
-- La seconda riga `<?php include_once "navbar.html" ?>` fa la stessa cosa, ma per il file "navbar.html". Questo file di solito contiene la barra di navigazione con i link alle diverse sezioni del sito.
+- La prima riga `<?php include_once "header.php" ?>` indica al server web di includere il contenuto del file "header.php" all'interno della pagina. Di solito, l'intestazione contiene elementi come il logo e il titolo del sito.
 
-- La riga `<p>Questa è la home page</p>` rappresenta il contenuto principale della pagina, in questo caso, un semplice paragrafo che dichiara che ci troviamo sulla pagina principale.
+- La seconda riga `<?php include_once "navbar.php" ?>` esegue la stessa operazione, ma per il file "navbar.php". Questo file solitamente contiene la barra di navigazione con i link alle diverse sezioni del sito.
 
-- Infine, la terza riga `<?php include_once "footer.html" ?>` include il file "footer.html", che di solito contiene informazioni come il copyright o i dati di contatto.
+- La riga `<p>Questa è la home page</p>` rappresenta il contenuto principale della pagina, che in questo caso è un semplice paragrafo che dichiara che ci troviamo sulla pagina principale.
 
-L'utilizzo di `include_once` assicura che questi file vengano inclusi solo una volta nella pagina, evitando duplicazioni indesiderate.
+- Infine, l'ultima riga `<?php include_once "footer.php" ?>` include il file "footer.php", che di solito contiene informazioni come il copyright o i dati di contatto.
 
-In breve, questo codice PHP sta assemblando una pagina web combinando il contenuto da diversi file HTML, seguendo il principio di modularizzazione spiegato in precedenza. Questo rende la creazione e la manutenzione del sito più efficiente, consentendo modifiche facili e una migliore organizzazione del codice.
+L'utilizzo di `include_once` garantisce che questi file vengano inclusi solo una volta nella pagina, evitando duplicazioni indesiderate.
+
+In breve, questo codice PHP sta assemblando una pagina web combinando il contenuto da diversi file PHP, seguendo il principio di modularizzazione spiegato in precedenza. Ciò semplifica la creazione e la manutenzione del sito, consentendo modifiche facili e una migliore organizzazione del codice.
