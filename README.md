@@ -10,7 +10,8 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
 
 - [Introduzione a XAMPP](Guide/Xampp.md)
 - [Impostazione del sito](Guide/Lezione1/impostazione.md)
-   - [Header](header.md)
+   - [Index](Guide/Lezione1/impostazione.md#indexphp)    
+   - [Header](Guide/Lezione1/impostazione.md#headerphp)
    - [Navbar](navbar.md)
    - [Footer](footer.md)
    - [Index](index.md)
