@@ -30,3 +30,44 @@ Questo codice PHP è utilizzato per comporre una pagina web combinando il conten
 L'utilizzo di `include_once` garantisce che questi file vengano inclusi solo una volta nella pagina, evitando duplicazioni indesiderate.
 
 In breve, questo codice PHP sta assemblando una pagina web combinando il contenuto da diversi file PHP, seguendo il principio di modularizzazione spiegato in precedenza. Ciò semplifica la creazione e la manutenzione del sito, consentendo modifiche facili e una migliore organizzazione del codice.
+
+
+#Header.php
+
+```html
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+    <head>
+        <title> E-Commerce </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        
+        <hgroup class="text-center">
+            <h1> E-Commerce </h1>
+            <h2> Benvenuto nel mio E-Commerce </h2>
+        </hgroup>
+```
+
+
+Questo codice HTML rappresenta la struttura di base di una pagina web che utilizza Bootstrap per la formattazione e il layout. Ecco una breve spiegazione di ciascuna parte:
+
+1. `<!DOCTYPE html>`: Questa dichiarazione definisce il tipo di documento HTML utilizzato, indicando che si tratta di un documento HTML5.
+
+2. `<html data-bs-theme="dark">`: Questo elemento `<html>` definisce l'inizio del documento HTML e specifica un attributo personalizzato `data-bs-theme` che potrebbe essere utilizzato per impostare un tema scuro (questo può essere parte di un uso personalizzato e non standard di Bootstrap).
+
+3. `<head>`: Questa sezione contiene le informazioni sull'intestazione del documento, come il titolo della pagina e i collegamenti a fogli di stile e script esterni.
+
+4. `<title> E-Commerce </title>`: Questo è il titolo della pagina web visualizzato nella barra del titolo del browser.
+
+5. `<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">`: Questo tag `<link>` carica il foglio di stile CSS di Bootstrap dalla CDN (Content Delivery Network), che consente di applicare lo stile Bootstrap alla pagina.
+
+6. `<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>`: Questo tag `<script>` carica il file JavaScript di Bootstrap dalla CDN, che fornisce funzionalità interattive di Bootstrap.
+
+7. `<body class="d-flex flex-column min-vh-100">`: Questo è il corpo principale della pagina. L'attributo `class` applica classi CSS Bootstrap per creare un layout flessibile con altezza minima del 100% della viewport.
+
+8. `<hgroup class="text-center">`: Questo gruppo di titoli (`<h1>` e `<h2>`) è centrato orizzontalmente sulla pagina e rappresenta il titolo principale e una breve introduzione al sito web.
+
+In generale, questo codice HTML crea una pagina di base con il titolo "E-Commerce" e utilizza Bootstrap per gestire la formattazione e il layout della pagina.
+
