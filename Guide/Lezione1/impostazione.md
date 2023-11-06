@@ -32,7 +32,7 @@ L'utilizzo di `include_once` garantisce che questi file vengano inclusi solo una
 In breve, questo codice PHP sta assemblando una pagina web combinando il contenuto da diversi file PHP, seguendo il principio di modularizzazione spiegato in precedenza. Ciò semplifica la creazione e la manutenzione del sito, consentendo modifiche facili e una migliore organizzazione del codice.
 
 
-# Header.php
+# header.php
 
 ```html
 <!DOCTYPE html>
@@ -71,3 +71,43 @@ Questo codice HTML rappresenta la struttura di base della pagina "header.php" de
 
 In generale, questo codice HTML crea una pagina di base con il titolo "E-Commerce" e utilizza Bootstrap per gestire la formattazione e il layout della pagina.
 
+# navbar.php
+
+```html
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.php">E-Commerce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+```
+
+
+Questo codice HTML rappresenta la struttura della barra di navigazione della pagina "navbar.php". Ecco una breve spiegazione di ciascuna parte:
+
+- `<nav class="navbar navbar-expand-sm bg-dark navbar-dark">`: Questo elemento `<nav>` rappresenta la barra di navigazione. Le classi Bootstrap (`navbar`, `navbar-expand-sm`, `bg-dark`, `navbar-dark`) definiscono lo stile e il comportamento della barra di navigazione.
+
+- `<div class="container-fluid">`: Questo `<div>` è un contenitore che aiuta a gestire la larghezza della barra di navigazione e ad allinearla correttamente.
+
+- `<a class="navbar-brand" href="index.php">E-Commerce</a>`: Questo è il logo o il nome del marchio nella barra di navigazione.
+
+- `<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">`: Questo è il pulsante del menu di navigazione che appare quando la larghezza dello schermo è troppo piccola per visualizzare tutti i collegamenti.
+
+- `<div class="collapse navbar-collapse" id="collapsibleNavbar">`: Questo `<div>` contiene i collegamenti di navigazione e viene visualizzato quando il pulsante del menu è attivato.
+
+- `<ul class="navbar-nav me-auto">`: Questa lista non ordinata (`<ul>`) contiene i collegamenti della barra di navigazione e si allinea automaticamente a destra.
+
+- `<li class="nav-item">`: Ogni collegamento di navigazione è racchiuso in un elemento `<li>`, che rappresenta un elemento della lista.
+
+- `<a class="nav-link" href="index.php">Home</a>`: Questo è un collegamento di navigazione che reindirizza alla pagina principale ("index.php").
+
+In sintesi, il codice HTML crea una barra di navigazione con il nome del marchio, un pulsante di menu per i dispositivi mobili e un collegamento "Home". Le classi Bootstrap vengono utilizzate per definire lo stile e il comportamento della barra di navigazione.
