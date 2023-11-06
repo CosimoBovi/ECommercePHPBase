@@ -32,7 +32,7 @@ L'utilizzo di `include_once` garantisce che questi file vengano inclusi solo una
 In breve, questo codice PHP sta assemblando una pagina web combinando il contenuto da diversi file PHP, seguendo il principio di modularizzazione spiegato in precedenza. Ciò semplifica la creazione e la manutenzione del sito, consentendo modifiche facili e una migliore organizzazione del codice.
 
 
-#Header.php
+# Header.php
 
 ```html
 <!DOCTYPE html>
@@ -51,7 +51,7 @@ In breve, questo codice PHP sta assemblando una pagina web combinando il contenu
 ```
 
 
-Questo codice HTML rappresenta la struttura di base di una pagina web che utilizza Bootstrap per la formattazione e il layout. Ecco una breve spiegazione di ciascuna parte:
+Questo codice HTML rappresenta la struttura di base della pagina "header.php" del nostro sito web e utilizza Bootstrap per la formattazione e il layout. Ecco una breve spiegazione di ciascuna parte:
 
 1. `<!DOCTYPE html>`: Questa dichiarazione definisce il tipo di documento HTML utilizzato, indicando che si tratta di un documento HTML5.
 
