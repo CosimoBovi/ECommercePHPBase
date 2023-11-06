@@ -17,7 +17,7 @@ Vediamo ora come costruire un'esempio di pagina iniziale del nostro sito interne
 ```
 
 
-Questo codice PHP è utilizzato per comporre una pagina web combinando il contenuto da diversi file PHP. Ogni parte svolge un ruolo specifico:
+Questo codice utilizza PHP, un linguaggio di programmazione spesso combinato con HTML per creare pagine web dinamiche. La parte PHP inizia e termina con `<?php` e `?>`, in questo caso viene utilizzata per includere il contenuto di tre file diversi all'interno di una pagina web.
 
 - La prima riga `<?php include_once "header.php" ?>` indica al server web di includere il contenuto del file "header.php" all'interno della pagina. Di solito, l'intestazione contiene elementi come il logo e il titolo del sito.
 
