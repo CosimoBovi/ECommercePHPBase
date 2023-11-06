@@ -2,7 +2,7 @@
 
 Per creare il nostro sito, utilizzeremo la tecnica della modularizzazione del codice HTML. Questo significa che divideremo la pagina web in piccoli "pezzi di puzzle" separati, come l'intestazione, la barra di navigazione e il piè di pagina. Questi pezzi possono essere riutilizzati in diverse pagine, rendendo la creazione e la manutenzione dei siti web più semplici. Se vogliamo apportare modifiche, possiamo farlo solo in uno di questi pezzi anziché in tutto il sito. In breve, la modularizzazione rende la gestione del codice più efficiente.
 
-# Index.php
+# index.php
 
 Vediamo ora come costruire un'esempio di pagina iniziale del nostro sito internet
 
@@ -111,3 +111,39 @@ Questo codice HTML rappresenta la struttura della barra di navigazione della pag
 - `<a class="nav-link" href="index.php">Home</a>`: Questo è un collegamento di navigazione che reindirizza alla pagina principale ("index.php").
 
 In sintesi, il codice HTML crea una barra di navigazione con il nome del marchio, un pulsante di menu per i dispositivi mobili e un collegamento "Home". Le classi Bootstrap vengono utilizzate per definire lo stile e il comportamento della barra di navigazione.
+
+
+
+# footer.php
+
+```html
+<footer class="mt-auto d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+    <p class="col-md-4 mb-0 text-body-secondary"> E-Commerce Company </p>
+
+    <a href="index.php" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      E-Commerce
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="index.php" class="nav-link px-2 text-body-secondary">Home</a></li>
+    </ul>
+</footer>
+</body>
+</html>
+```
+
+
+Questo codice HTML rappresenta la struttura del piè di pagina nella pagina "footer.php." Ecco una breve spiegazione di ciascuna parte:
+
+- `<footer class="mt-auto d-flex flex-wrap justify-content-between align-items-center py-3 border-top">`: Questo elemento `<footer>` rappresenta il piè di pagina del sito. Le classi Bootstrap sono utilizzate per definire l'allineamento, lo stile e la disposizione del piè di pagina.
+
+- `<p class="col-md-4 mb-0 text-body-secondary"> E-Commerce Company </p>`: Questo paragrafo (`<p>`) contiene il nome dell'azienda (in questo caso, "E-Commerce Company"). Le classi Bootstrap definiscono la larghezza della colonna e il colore del testo.
+
+- `<a href="index.php" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">E-Commerce</a>`: Questo è un collegamento che porta alla pagina principale ("index.php"). Le classi Bootstrap gestiscono la larghezza della colonna e lo stile del collegamento.
+
+- `<ul class="nav col-md-4 justify-content-end">`: Questa è una lista non ordinata (`<ul>`) che contiene un collegamento di navigazione.
+
+- `<li class="nav-item"><a href="index.php" class="nav-link px-2 text-body-secondary">Home</a></li>`: Questo è un collegamento di navigazione nella lista, che reindirizza alla pagina principale ("index.php").
+
+In sintesi, il codice HTML crea il piè di pagina con il nome dell'azienda, un collegamento al sito e un collegamento "Home". Le classi Bootstrap vengono utilizzate per definire lo stile e la disposizione del piè di pagina.
+
