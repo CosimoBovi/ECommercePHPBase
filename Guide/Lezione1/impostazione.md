@@ -65,7 +65,7 @@ Questo codice HTML rappresenta la struttura di base della pagina "header.php" de
 
 6. `<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>`: Questo tag `<script>` carica il file JavaScript di Bootstrap dalla CDN, che fornisce funzionalità interattive di Bootstrap.
 
-7. `<body class="d-flex flex-column min-vh-100">`: Questo è il corpo principale della pagina. L'attributo `class` applica classi CSS Bootstrap per creare un layout flessibile con altezza minima del 100% della viewport.
+7. `<body class="d-flex flex-column min-vh-100">`: Questo è il corpo principale della pagina. L'attributo `class` applica classi CSS Bootstrap per creare un layout flessibile con altezza minima del 100% della viewport(la finestra visibile all'interno del browser).
 
 8. `<hgroup class="text-center">`: Questo gruppo di titoli (`<h1>` e `<h2>`) è centrato orizzontalmente sulla pagina e rappresenta il titolo principale e una breve introduzione al sito web.
 
