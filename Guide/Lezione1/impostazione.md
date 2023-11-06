@@ -10,7 +10,7 @@ Per creare il nostro sito, utilizzeremo la tecnica della modularizzazione del co
 
 <?php include_once "footer.html" ?>
 
-
+```
 
 Questo codice utilizza PHP, un linguaggio di programmazione spesso combinato con HTML per creare pagine web dinamiche. La parte PHP inizia e termina con `<?php` e `?>`, e viene utilizzata per includere il contenuto di tre file HTML diversi all'interno di una pagina web.
 
