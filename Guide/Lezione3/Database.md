@@ -62,3 +62,37 @@ Ora, spieghiamo ciascuna di queste query:
 - `(Description VARCHAR(255))`: Questa riga crea il campo "Description" come una stringa di massimo 255 caratteri, ma non richiede che sia obbligatorio.
 
 Queste query SQL definiscono la struttura delle tabelle "Users" e "UserTypes" e stabiliscono una relazione tra di loro tramite il campo "Usertypeid." 
+
+
+# Controllo Password
+
+Per collegare il nostro database al PHP useremo delle stored procedure, cioè delle query salvate all'interno del nostro database. Le stored procedure offrono un approccio strutturato e sicuro, consentendo inoltre una migliore separazione tra la logica dell'applicazione e il database. Il seguente codice va inserito ed eseguito come una normale query sql
+
+```sql
+DELIMITER //
+CREATE PROCEDURE GetPasswordByUsernameOrEmail(
+    IN inputData VARCHAR(100)
+)
+BEGIN
+    -- Cerca sia per username che per email e restituisci la password trovata
+    SELECT Password FROM Users WHERE Username = inputData OR Mail = inputData;
+END //
+DELIMITER ;
+```
+
+- `DELIMITER //`: Inizia impostando un nuovo delimitatore temporaneo (`//`) per consentire la definizione della stored procedure senza conflitti con il delimitatore di istruzioni SQL predefinito (`;`).
+
+- `CREATE PROCEDURE GetPasswordByUsernameOrEmail(IN inputData VARCHAR(100))`: Questa riga crea una nuova stored procedure chiamata `GetPasswordByUsernameOrEmail`. La stored procedure accetta un parametro di input `inputData`, che deve essere una stringa di testo con una lunghezza massima di 100 caratteri. Questo parametro sarà utilizzato per passare un valore (username o email) alla stored procedure in modo da cercare la password corrispondente.
+
+- `BEGIN`: Segna l'inizio del corpo della stored procedure. Tutto ciò che segue tra `BEGIN` e `END` costituisce il corpo della procedura.
+
+- `SELECT Password FROM Users WHERE Username = inputData OR Mail = inputData;`: Questa è la parte principale della stored procedure. Utilizza una query SQL `SELECT` per cercare la password nell'insieme di dati della tabella "Users." La query è strutturata come segue:
+  - `SELECT Password`: Richiede la selezione della colonna "Password" dalla tabella "Users".
+  - `FROM Users`: Specifica che la tabella da cui verrà selezionata la colonna è "Users."
+  - `WHERE Username = inputData OR Mail = inputData`: Impone una condizione per la selezione, cercando corrispondenze nell'attributo "Username" o "Mail" della tabella "Users" in base al valore passato come parametro `inputData`.
+  
+- `END //`: Segna la fine del corpo della stored procedure.
+
+- `DELIMITER ;`: Ripristina il delimitatore di istruzioni SQL predefinito (`;`) per le query successive.
+
+In sintesi, questa stored procedure accetta un valore (username o email) come parametro di input, quindi cerca nella tabella "Users" una corrispondenza in base a questo valore. Se una corrispondenza viene trovata, la stored procedure restituirà la password associata come "Result." Questo è un metodo sicuro e riusabile per ottenere la password di un utente in base al suo username o email e rappresenta un esempio di utilizzo delle stored procedure per semplificare le interrogazioni del database nel tuo codice PHP, migliorando la sicurezza e la manutenibilità.
