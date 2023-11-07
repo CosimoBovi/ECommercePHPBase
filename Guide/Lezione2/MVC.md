@@ -51,11 +51,11 @@ function login($user, $pass) {
         // Se le credenziali sono corrette, impostiamo una variabile di sessione chiamata "username" con il valore di $user.
         $_SESSION["username"] = $user;
 
-        // Stampa 0 per indicare che l'accesso è riuscito.
-        echo 0;
+        // Ritorna 0 per indicare che l'accesso è riuscito.
+        return 0;
     } else {
-        // Se le credenziali non sono corrette, stampiamo 1 per indicare che l'accesso è fallito.
-        echo 1;
+        // Se le credenziali non sono corrette, ritorna 1 per indicare che l'accesso è fallito.
+        return 1;
     }
 }
 
@@ -72,8 +72,8 @@ La pagina `userModel.php` che è stata fornita sembra essere un semplice esempio
 4. All'interno della funzione, c'è un blocco condizionale (`if-else`):
    - L'istruzione `if` verifica se l'username e la password sono uguali a "username" e "password". Nota che questa è una simulazione semplificata. In un'applicazione reale, questa parte verrà sostituita da una query al database per verificare le credenziali dell'utente.
    - Se le credenziali sono corrette, viene impostata una variabile di sessione chiamata "username" con il valore dell'username dell'utente (`$_SESSION["username"] = $user;`). Questo `$user` rappresenta l'username fornito come argomento alla funzione.
-   - Viene quindi stampato "0" per indicare che l'accesso è riuscito.
-   - Se le credenziali non sono corrette, viene stampato "1" per indicare che l'accesso è fallito.
+   - Viene quindi ritornato "0" per indicare che l'accesso è riuscito.
+   - Se le credenziali non sono corrette, viene ritornato "1" per indicare che l'accesso è fallito.
 
 5. `?>`: Questo è il tag di chiusura PHP e indica la fine del blocco di codice PHP.
 
