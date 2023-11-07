@@ -91,6 +91,7 @@ Ecco una spiegazione step-by-step che tiene conto del fatto che la spiegazione Ã
 
  Il file userControl.php rappresenta un esempio di un "controller" all'interno di un'applicazione web, facendo da smistamento tra l'interfaccia e il model
 
+```php
 <?php
     // Includi il file del modello utente (userModel.php).
     require_once "../Model/userModel.php";
@@ -106,7 +107,7 @@ Ecco una spiegazione step-by-step che tiene conto del fatto che la spiegazione Ã
         echo json_encode(['errore'=>$errore]);
     }
 ?>
-
+```
 
 **Spiegazione del Codice in userControl.php:**
 
