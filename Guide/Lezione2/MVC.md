@@ -138,3 +138,36 @@ In sintesi, questo script PHP riceve una richiesta HTTP contenente dati in forma
 
 In sintesi, JSON è uno strumento essenziale per lo scambio di dati tra applicazioni e sistemi diversi. La sua semplicità, leggibilità e versatilità lo rendono un'opzione ideale per rappresentare dati strutturati in molte situazioni, inclusi servizi Web, applicazioni mobili, configurazioni di applicazioni e molto altro.
 
+
+# VIEW(lognin.php)
+
+Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'applicazione web, ovvero ciò che gli utenti vedono e con cui interagiscono. La pagina login.php è un esempio di vista all'interno di un'applicazione web che gestisce il processo di accesso degli utenti.
+
+
+
+
+1. `<?php include_once 'header.php' ?>` e `<?php include_once 'navbar.php' ?>`: Queste istruzioni includono il codice HTML dei file `header.php` e `navbar.php`. Questo è un approccio comune per creare una struttura di pagina coerente e riutilizzabile. `header.php` solitamente include l'intestazione della pagina, mentre `navbar.php` include la barra di navigazione.
+
+2. `<script src="./js/login.js"></script>`: Questa riga importa il file JavaScript `login.js`. Questo file JavaScript è responsabile dell'interazione dinamica con la pagina e verrà spiegato separatamente.
+
+3. `<div class="row w-100">`: Questo `<div>` rappresenta una riga (row) in un layout Bootstrap. La classe `w-100` è utilizzata per garantire che il div occupi l'intera larghezza disponibile.
+
+4. `<div class="col-md-3"></div>`: Questi due `<div>` rappresentano colonne (columns) vuote con una larghezza di 3 unità su 12. Questo viene utilizzato per creare spazi vuoti ai lati della sezione centrale.
+
+5. `<div class="col-md-6 justify-content-center">`: Questo `<div>` rappresenta una colonna centrale con una larghezza di 6 unità su 12, occupando quindi metà della larghezza disponibile. La classe `justify-content-center` è utilizzata per centrare il contenuto orizzontalmente all'interno della colonna.
+
+6. `<form>`: Questo elemento rappresenta un modulo HTML che gli utenti possono utilizzare per inserire dati, in questo caso, username e password.
+
+7. `<label class="w-25">username: </label>` e `<input type="text" id="user" class="w-100 my-2">`: Queste righe rappresentano un campo per l'username. Il tag `<label>` fornisce una descrizione "username" per il campo di input, e l'elemento `<input>` con `type="text"` consente agli utenti di inserire il loro username. La classe `w-25` è utilizzata per definire una larghezza fissa del 25% per il label, mentre `w-100` definisce una larghezza del 100% per l'input. La classe `my-2` applica un margine superiore e inferiore al campo di input.
+
+8. `<label class="w-25">password: </label>` e `<input type="password" id="pass" class="w-100 my-2">`: Queste righe rappresentano un campo per la password. Funzionano in modo simile a quanto spiegato per l'username, ma con il tipo di input `password` per nascondere i caratteri della password.
+
+9. `<input type="button" class="btn btn-success w-100 mt-5" onclick="login()" value="Entra">`: Questa riga rappresenta un pulsante che gli utenti possono fare clic per avviare il processo di login. La classe `btn` è utilizzata per stili di pulsante Bootstrap, `btn-success` definisce uno stile di pulsante verde, `w-100` imposta la larghezza al 100%, e `mt-5` aggiunge un margine superiore al pulsante. L'attributo `onclick` chiama la funzione JavaScript `login()` quando il pulsante viene premuto.
+
+10. `</form>`: Questo tag chiude il modulo del form.
+
+11. `<div class="col-md-3"></div>`: Questo `<div>` rappresenta un'altra colonna vuota alla destra del modulo di login.
+
+12. `<?php include_once 'footer.php' ?>`: Questa istruzione include il codice HTML dal file `footer.php`, che solitamente contiene il piè di pagina.
+
+La pagina `login.php` fornisce una forma per l'inserimento di username e password e un pulsante per avviare il processo di login. La logica di gestione del login, inclusi i dettagli relativi al JavaScript, verrà spiegata separatamente una volta fornito il file JavaScript `login.js`.
