@@ -139,7 +139,7 @@ In sintesi, questo script PHP riceve una richiesta HTTP contenente dati in forma
 In sintesi, JSON è uno strumento essenziale per lo scambio di dati tra applicazioni e sistemi diversi. La sua semplicità, leggibilità e versatilità lo rendono un'opzione ideale per rappresentare dati strutturati in molte situazioni, inclusi servizi Web, applicazioni mobili, configurazioni di applicazioni e molto altro.
 
 
-# VIEW(lognin.php)
+# VIEW(login.php)
 
 Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'applicazione web, ovvero ciò che gli utenti vedono e con cui interagiscono. La pagina login.php è un esempio di vista all'interno di un'applicazione web che gestisce il processo di accesso degli utenti.
 
