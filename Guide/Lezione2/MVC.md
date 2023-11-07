@@ -86,3 +86,32 @@ La pagina `userModel.php` che è stata fornita sembra essere un semplice esempio
 - `$_SESSION["username"]` è una variabile di sessione in PHP. Le variabili di sessione sono utilizzate per memorizzare dati che devono persistere tra diverse pagine web o richieste. In questo caso, stiamo impostando la variabile di sessione "username" con il valore dell'username dell'utente. Questa variabile può essere utilizzata in altre parti dell'applicazione per verificare l'accesso dell'utente o per personalizzare l'esperienza utente in base all'username. È un esempio di vettore associativo, cioè di un vettore che ha come indici non dei numeri ma delle chiavi solitamente testuali. In questo caso "username" è la chiave e `$user` è il valore associato a quella chiave.
 
 
+
+# CONTRL (userControl.php)
+
+<?php
+    // Includi il file del modello utente (userModel.php).
+    require_once "../Model/userModel.php";
+
+    // Leggi i dati inviati dalla richiesta HTTP (in formato JSON) e convertili in un array associativo.
+    $Dati = json_decode(file_get_contents('php://input'), true);
+
+    // Verifica l'azione specificata nei dati.
+    if ($Dati["action"] == "login") {
+        // Se l'azione è "login," chiama la funzione "login" dal modello utente con l'username e la password forniti.
+        echo login($Dati["username"], $Dati["password"]);
+    }
+?>
+
+
+**Spiegazione del Codice in userControl.php:**
+
+1. `require_once "../Model/userModel.php";`: Questa istruzione importa (include) il file `userModel.php` dal percorso specificato. Il file `userModel.php` contiene le funzioni per la gestione dell'utente, inclusa la funzione `login`. Questo passaggio è importante perché ci consente di utilizzare le funzioni definite nel modello utente in questo script.
+
+2. `$Dati = json_decode(file_get_contents('php://input'), true);`: Questa istruzione legge i dati inviati nella richiesta HTTP in formato JSON. I dati vengono letti da `php://input`, che rappresenta il corpo della richiesta. Successivamente, `json_decode` converte questi dati JSON in un array associativo PHP e li memorizza nella variabile `$Dati`. Questi dati possono includere l'azione specificata, l'username e la password.
+
+3. `if ($Dati["action"] == "login") { ... }`: Questo blocco condizionale verifica se l'azione specificata nei dati è uguale a "login". Se l'azione è "login," il blocco di codice all'interno delle parentesi graffe verrà eseguito.
+
+4. `echo login($Dati["username"], $Dati["password"]);`: Se l'azione è "login," viene chiamata la funzione `login` definita nel modello utente. Questa funzione prende come argomenti l'username e la password forniti nei dati. Il risultato della funzione `login` viene quindi stampato (echo) come risposta alla richiesta HTTP. La funzione `login` può restituire 0 se l'accesso è riuscito o 1 se l'accesso è fallito.
+
+In sintesi, questo script PHP riceve una richiesta HTTP contenente dati in formato JSON, verifica l'azione specificata nei dati, e se l'azione è "login," chiama la funzione di login del modello utente con l'username e la password forniti. Il risultato della funzione di login viene quindi restituito come risposta HTTP, che può essere utilizzata per determinare se l'accesso è riuscito o fallito. Questo è un esempio semplice di come il modello, il controllore e i dati interagiscono all'interno di un'applicazione.
