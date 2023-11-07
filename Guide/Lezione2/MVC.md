@@ -156,7 +156,6 @@ Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'
                 <label class="w-25">username: </label> <input type="text" id="user" class="w-100 my-2"> 
                 <label class="w-25">password: </label> <input type="password" id="pass" class="w-100 my-2"> 
                 <input type="button" class="btn btn-success w-100 mt-5" onclick="login()" value="Entra">  
-                <a href="./signup.php"><input type="button" class="btn btn-success w-100 mt-5" value="Registrati">  </a>
             </form>
         </div>
         <div class="col-md-3"></div>
