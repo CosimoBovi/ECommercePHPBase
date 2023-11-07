@@ -189,3 +189,79 @@ Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'
 12. `<?php include_once 'footer.php' ?>`: Questa istruzione include il codice HTML dal file `footer.php`.
 
 La pagina `login.php` fornisce una forma per l'inserimento di username e password e un pulsante per avviare il processo di login. La logica di gestione del login, inclusi i dettagli relativi al JavaScript, verrà spiegata separatamente una volta fornito il file JavaScript `login.js`.
+
+
+# VIEW(login.js)
+
+```js
+async function login() {
+    // Creiamo un oggetto 'dati' per raccogliere le informazioni dell'utente.
+    let dati = {};
+    dati.user = document.getElementById("user").value; // Otteniamo il valore dell'input per l'username.
+    dati.pass = document.getElementById("pass").value; // Otteniamo il valore dell'input per la password.
+    dati.action = "login"; // Specifica l'azione da eseguire, in questo caso, "login".
+
+    // Definiamo l'URL a cui invieremo la richiesta.
+    let url = "./Control/userControl.php";
+
+    // Usiamo l'API 'fetch' per effettuare una richiesta HTTP asincrona.
+    // Questo è un modo per comunicare con il server senza dover ricaricare l'intera pagina.
+    let obj = fetch(url, {
+        method: "POST", // Specifichiamo il metodo HTTP come "POST".
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dati) // Convertiamo l'oggetto 'dati' in formato JSON e lo includiamo nel corpo della richiesta.
+    })
+    .then((response) => response.json()) // Riceviamo la risposta JSON dal server.
+    .then((data) => {
+        // Verifichiamo se l'utente ha inserito credenziali corrette.
+        if (data.errore == 0) {
+            location.href = "index.php"; // Reindirizziamo l'utente a "index.php".
+        } else {
+            alert("Nome utente o password errati"); // Mostriamo un messaggio di errore se le credenziali sono errate.
+        }
+    });
+}
+```
+
+**Spiegazione del Codice JavaScript:**
+
+1. La funzione `async function login()` definisce una funzione JavaScript chiamata `login`. Questa funzione verrà chiamata quando l'utente preme il pulsante "Entra" nella vista `login.php`.
+
+2. Creiamo un oggetto chiamato `dati` per raccogliere le informazioni inserite dall'utente, come l'username e la password.
+
+3. Utilizziamo `document.getElementById("user").value` e `document.getElementById("pass").value` per ottenere i valori inseriti negli input dei campi username e password.
+
+4. Specificare `dati.action = "login"` indica che l'azione da eseguire è il "login."
+
+5. Definiamo l'URL a cui invieremo la richiesta. In questo caso, stiamo inviando una richiesta POST all'URL `./Control/userControl.php`.
+
+6. Utilizziamo l'API `fetch` per effettuare una richiesta HTTP asincrona al server. Questo consente di inviare dati al server senza dover ricaricare l'intera pagina.
+
+7. Configuriamo la richiesta includendo il metodo HTTP come "POST" e specificando i tipi di intestazioni accettati.
+
+8. Nel corpo della richiesta, convertiamo l'oggetto `dati` in formato JSON utilizzando `JSON.stringify(dati)` e lo inviamo al server.
+
+9. Riceviamo la risposta dal server, che è in formato JSON.
+
+10. Verifichiamo se la risposta contiene un `errore` uguale a 0. Se è così, reindirizziamo l'utente a "index.php," presumibilmente dopo un login riuscito. Altrimenti, mostriamo un messaggio di errore con `alert` se le credenziali sono errate.
+
+In sintesi, il codice JavaScript `login.js` gestisce la comunicazione tra la vista `login.php` e il server, consentendo all'utente di inserire le proprie credenziali e ottenere una risposta dal server in modo asincrono.
+
+---
+
+**Approfondimento su Chiamate Asincrone e Concetto di Asincronia:**
+
+Le chiamate asincrone e il concetto di asincronia sono fondamentali nello sviluppo web moderno. Ecco un approfondimento su questi concetti:
+
+- **Asincronia:** In programmazione, il termine "asincrono" si riferisce a operazioni che non avvengono in modo sincrono o sequenziale. Invece, le operazioni asincrone possono avvenire in parallelo o in un secondo momento, senza attendere che l'operazione precedente sia completata. Questo è particolarmente utile quando si affrontano operazioni che richiedono tempo, come le richieste di rete o le operazioni di I/O.
+
+- **Chiamate Asincrone:** Le chiamate asincrone sono comunemente utilizzate nelle applicazioni web per inviare richieste al server senza bloccare l'interfaccia utente dell'applicazione. Quando un'applicazione effettua una chiamata asincrona, questa invia una richiesta al server e continua ad eseguire altre operazioni senza attendere la risposta del server. Una volta che il server ha completato l'elaborazione della richiesta, invia una risposta, e l'applicazione riceve e gestisce la risposta in un secondo momento.
+
+- **.then:** In JavaScript, il metodo `.then` è utilizzato per gestire promesse. Una promessa rappresenta un valore che potrebbe non essere disponibile immediatamente ma in futuro. Le chiamate asincrone restituiscono spesso promesse. Quando una promessa si risolve (quando i dati sono pronti), il metodo `.then` consente di specificare cosa fare con i dati o come gestire eventuali errori. Ad esempio, nel codice `fetch`, `.then` viene utilizzato per gestire la risposta del server una volta che è stata ricevuta.
+
+- **Async/Await:** JavaScript offre anche le parole chiave `async` e `await` per semplificare la gestione delle chiamate asincrone. Utilizzando `async` prima di una funzione, la funzione diventa asincrona e può utilizzare l'operatore `await` all'interno di essa. L'operatore `await` attende che una promessa venga risolta e restituisce il risultato. Questo semplifica la gestione del flusso di controllo asincrono e rende il codice più leggibile.
+
+In sintesi, le chiamate asincrone sono fondamentali per garantire che un'applicazione web possa comunicare con un server in modo efficiente, senza bloccare l'interfaccia utente e senza dover attendere risposte immediate. L'uso di `.then`, promesse, `async` e `await` consente di scrivere codice che gestisce le operazioni asincrone in modo chiaro e organizzato, migliorando l'esperienza dell'utente e l'efficienza delle applicazioni web.
