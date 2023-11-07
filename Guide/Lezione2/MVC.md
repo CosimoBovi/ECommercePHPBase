@@ -29,4 +29,4 @@ Il progetto realtivo a questa guida è organizzato in una struttura di cartelle 
 
 Questa organizzazione a cartelle contribuisce a mantenere il progetto pulito, ordinato e facilmente gestibile, garantendo che ogni componente del sito web sia al suo posto e ben strutturata.
 
-![Struttura Progetto MVC](Guide/Lezione2/StrutturaProgettoMVC.png)
+![Struttura Progetto MVC](StrutturaProgettoMVC.png)
