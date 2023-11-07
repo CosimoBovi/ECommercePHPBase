@@ -198,8 +198,8 @@ La pagina `login.php` fornisce una forma per l'inserimento di username e passwor
 async function login() {
     // Creiamo un oggetto 'dati' per raccogliere le informazioni dell'utente.
     let dati = {};
-    dati.user = document.getElementById("user").value; // Otteniamo il valore dell'input per l'username.
-    dati.pass = document.getElementById("pass").value; // Otteniamo il valore dell'input per la password.
+    dati.username = document.getElementById("user").value; // Otteniamo il valore dell'input per l'username.
+    dati.password = document.getElementById("pass").value; // Otteniamo il valore dell'input per la password.
     dati.action = "login"; // Specifica l'azione da eseguire, in questo caso, "login".
 
     // Definiamo l'URL a cui invieremo la richiesta.
