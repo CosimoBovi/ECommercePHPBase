@@ -143,8 +143,27 @@ In sintesi, JSON è uno strumento essenziale per lo scambio di dati tra applicaz
 
 Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'applicazione web, ovvero ciò che gli utenti vedono e con cui interagiscono. La pagina login.php è un esempio di vista all'interno di un'applicazione web che gestisce il processo di accesso degli utenti.
 
+```php
+   <?php include_once 'header.php' ?>
+    <?php include_once 'navbar.php' ?>
 
+    <script src="./js/login.js"></script>
 
+    <div class="row w-100">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 justify-content-center">
+            <form>
+                <label class="w-25">username: </label> <input type="text" id="user" class="w-100 my-2"> 
+                <label class="w-25">password: </label> <input type="password" id="pass" class="w-100 my-2"> 
+                <input type="button" class="btn btn-success w-100 mt-5" onclick="login()" value="Entra">  
+                <a href="./signup.php"><input type="button" class="btn btn-success w-100 mt-5" value="Registrati">  </a>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <?php include_once 'footer.php' ?>
+```
 
 1. `<?php include_once 'header.php' ?>` e `<?php include_once 'navbar.php' ?>`: Queste istruzioni includono il codice HTML dei file `header.php` e `navbar.php`. Questo è un approccio comune per creare una struttura di pagina coerente e riutilizzabile. `header.php` solitamente include l'intestazione della pagina, mentre `navbar.php` include la barra di navigazione.
 
