@@ -30,3 +30,33 @@ Il progetto realtivo a questa guida è organizzato in una struttura di cartelle 
 Questa organizzazione a cartelle contribuisce a mantenere il progetto pulito, ordinato e facilmente gestibile, garantendo che ogni componente del sito web sia al suo posto e ben strutturata.
 
 ![Struttura Progetto MVC](StrutturaProgettoMVC.png)
+
+# MODEL (userModel.php)
+
+`userModel.php` è un componente chiave del Modello, e il suo scopo principale è gestire gli utenti. Questo file contiene tra le altre funzioni anche quella per la verifica delle credenziali degli utenti quando cercano di accedere al sito. La funzione `login` è un esempio di come questo processo di autenticazione potrebbe essere implementato all'interno del Modello.
+
+```php
+
+<?php
+// Inizializzazione della sessione
+session_start();
+
+// La funzione login prende due parametri: $user e $pass, che rappresentano rispettivamente l'username e la password dell'utente.
+
+function login($user, $pass) {
+    // Verifica se l'username e la password sono corretti (nota: questo è solo un esempio semplificato).
+    // Nella pratica, questa parte verrà sostituita da una chiamata a un database per verificare le credenziali.
+
+    if ($user == "username" && $pass == "password") {
+        // Se le credenziali sono corrette, impostiamo una variabile di sessione chiamata "username" con il valore di $user.
+        $_SESSION["username"] = $user;
+
+        // Stampa 0 per indicare che l'accesso è riuscito.
+        echo 0;
+    } else {
+        // Se le credenziali non sono corrette, stampiamo 1 per indicare che l'accesso è fallito.
+        echo 1;
+    }
+}
+
+```
