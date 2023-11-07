@@ -60,3 +60,11 @@ function login($user, $pass) {
 }
 
 ```
+
+**Variabili in PHP:**
+
+In PHP, il simbolo `$` è utilizzato per definire e accedere alle variabili. Le variabili in PHP sono contenitori per memorizzare dati, come numeri, stringhe, oggetti e altro. Quando dichiariamo una variabile, utilizziamo il simbolo `$` seguito da un nome significativo per la variabile. Ad esempio, `$user` è una variabile che può essere utilizzata per immagazzinare un valore come l'username di un utente.
+
+```php
+$user = "john_doe"; // Definizione di una variabile $user con un valore
+
