@@ -61,7 +61,7 @@ function login($user, $pass) {
 
 ```
 
-La pagina `userModel.php` che è stata fornita sembra essere un semplice esempio di un file PHP che contiene funzioni per la gestione dell'autenticazione degli utenti. Queste funzioni, anche se semplificate, possono aiutare a comprendere i concetti di base di PHP e la gestione di sessioni. Ecco una spiegazione step-by-step che tiene conto del fatto che la spiegazione è rivolta a persone che stanno apprendendo PHP per la prima volta:
+Ecco una spiegazione step-by-step che tiene conto del fatto che la spiegazione è rivolta a persone che stanno apprendendo PHP per la prima volta:
 
 1. `<?php`: Questo è il tag di apertura PHP e indica l'inizio di un blocco di codice PHP.
 
@@ -108,7 +108,7 @@ La pagina `userModel.php` che è stata fornita sembra essere un semplice esempio
 ?>
 
 
-**Spiegazione del Codice in userControl.php (Versione Aggiornata):**
+**Spiegazione del Codice in userControl.php:**
 
 1. `require_once "../Model/userModel.php";`: Questa istruzione importa (include) il file `userModel.php` dal percorso specificato. Il file `userModel.php` contiene le funzioni per la gestione dell'utente, inclusa la funzione `login`. Questo passaggio è importante perché ci consente di utilizzare le funzioni definite nel modello utente in questo script.
 
@@ -164,7 +164,7 @@ Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'
     <?php include_once 'footer.php' ?>
 ```
 
-1. `<?php include_once 'header.php' ?>` e `<?php include_once 'navbar.php' ?>`: Queste istruzioni includono il codice HTML dei file `header.php` e `navbar.php`. Questo è un approccio comune per creare una struttura di pagina coerente e riutilizzabile. `header.php` solitamente include l'intestazione della pagina, mentre `navbar.php` include la barra di navigazione.
+1. `<?php include_once 'header.php' ?>` e `<?php include_once 'navbar.php' ?>`: Queste istruzioni includono il codice HTML dei file `header.php` e `navbar.php`. 
 
 2. `<script src="./js/login.js"></script>`: Questa riga importa il file JavaScript `login.js`. Questo file JavaScript è responsabile dell'interazione dinamica con la pagina e verrà spiegato separatamente.
 
@@ -186,6 +186,6 @@ Nell'ambito dello sviluppo web, una "vista" rappresenta l'aspetto visuale di un'
 
 11. `<div class="col-md-3"></div>`: Questo `<div>` rappresenta un'altra colonna vuota alla destra del modulo di login.
 
-12. `<?php include_once 'footer.php' ?>`: Questa istruzione include il codice HTML dal file `footer.php`, che solitamente contiene il piè di pagina.
+12. `<?php include_once 'footer.php' ?>`: Questa istruzione include il codice HTML dal file `footer.php`.
 
 La pagina `login.php` fornisce una forma per l'inserimento di username e password e un pulsante per avviare il processo di login. La logica di gestione del login, inclusi i dettagli relativi al JavaScript, verrà spiegata separatamente una volta fornito il file JavaScript `login.js`.
