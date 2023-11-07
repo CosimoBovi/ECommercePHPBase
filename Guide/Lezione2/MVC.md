@@ -122,6 +122,8 @@ La pagina `userModel.php` che è stata fornita sembra essere un semplice esempio
 
 In sintesi, questo script PHP riceve una richiesta HTTP contenente dati in formato JSON, verifica l'azione specificata nei dati, e se l'azione è "login," chiama la funzione di login del modello utente con l'username e la password forniti. Il risultato della funzione di login viene quindi restituito come risposta HTTP, formattato in JSON, che può essere utilizzato per determinare se l'accesso è riuscito o fallito. Questo è un esempio semplice di come il modello, il controllore e i dati interagiscono all'interno di un'applicazione.
 
+---
+
 **Approfondimento: L'Importanza dei JSON**
 
 **JSON (JavaScript Object Notation):** JSON è un formato di scambio dati leggero, indipendente dal linguaggio, che viene ampiamente utilizzato per rappresentare dati strutturati. I dati in formato JSON sono rappresentati come coppie di chiavi-valore e sono facili da leggere e scrivere sia per le macchine che per gli esseri umani.
