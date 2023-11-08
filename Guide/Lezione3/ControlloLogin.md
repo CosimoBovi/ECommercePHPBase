@@ -170,7 +170,42 @@ function generaLogout(username){
     // Aggiungiamo l'elemento di logout alla navbar.
     document.getElementById("RightNavList").appendChild(newLogoutLi);
 }
+
+
+function generaLogin(){
+
+    // Creazione di un nuovo elemento <li> per il link di login
+    let newLoginLi = document.createElement("li");
+    newLoginLi.classList.add("nav-item");
+
+    // Creazione di un nuovo elemento <a> per il link di login
+    let newA = document.createElement("a");
+    newA.classList.add("nav-link");
+    newA.href="./login.php";
+    newA.innerText="Entra";
+
+    // Aggiunta del link di login al nuovo elemento <li>
+    newLoginLi.appendChild(newA);
+
+    // Aggiunta del nuovo elemento <li> al menu di navigazione destro
+    document.getElementById("RightNavList").appendChild(newLoginLi);
+}
 ```
+
+A titolo di esempio di seguito è mostrata la spiegazione dettagliata per la creazione del logout, le altre sezioni sono tutte molto simili:
+
+1. **`let newLogoutLi = document.createElement("li");`**: Creazione di un nuovo elemento `<li>` (list item) che conterrà il link di logout nella barra di navigazione.
+
+2. **`newLogoutLi.classList.add("nav-item");`**: Aggiunta della classe "nav-item" all'elemento `<li>`. Questa classe è spesso utilizzata nelle barre di navigazione Bootstrap per garantire uno stile uniforme.
+
+3. **`let newA = document.createElement("a");`**: Creazione di un nuovo elemento `<a>` (link) all'interno dell'elemento `<li>`, che costituirà il link di logout.
+
+4. **`newA.classList.add("nav-link");`**: Aggiunta della classe "nav-link" al link di logout. Questa classe è utilizzata per formattare correttamente i link all'interno della barra di navigazione.
+
+5. **`newA.href="./Control/userControl.php?logout=logout";`**: Impostazione dell'attributo "href" del link di logout con l'URL corretto per gestire il logout. Quando l'utente fa clic sul link, verrà reindirizzato alla pagina di gestione del logout. L'indirizzo "./Control/userControl.php?logout=logout"; imposta l'URL del link di logout dando anche un parametro *logout=logout* che fornisce al server PHP l'informazione necessaria per gestire la richiesta di logout quando il link viene cliccato. La gestione avviene attraverso il vettore associativo $_GET in PHP, permettendo al server di identificare e eseguire le azioni di logout richieste.
+
+6. **`newA.innerText="Logout";`**: Impostazione del testo visibile nel link di logout come "Logout". Questo è il testo che l'utente vedrà nella barra di navigazione.
+
 
 
 # Aggiunta Logout nel file userControl.php
@@ -205,92 +240,3 @@ Per attivare la funzione di logout, l'utente può accedere a `userControl.php` i
 ```
 
 Questa implementazione assicura che l'utente venga disconnesso correttamente dal sistema, terminando la sessione e reindirizzandolo a `index.php` con l'indicazione che il logout è avvenuto con successo.
-
----
-
----
-
----
-
-## Spiegazione dettagliata Navbar.JS
-
-#### **1. Evento "DOMContentLoaded"**
-
-```javascript
-document.addEventListener("DOMContentLoaded", function() {
-    visualizzaNavbar();
-});
-```
-
-Al caricamento della pagina (`DOMContentLoaded`), viene chiamata la funzione `visualizzaNavbar()`. Questo assicura che la navbar sia generata dinamicamente non appena la pagina è completamente caricata.
-
-#### **2. Funzione `visualizzaNavbar()`**
-
-```javascript
-async function visualizzaNavbar(){
-    user = await testLogin();
-
-    if(user.username != ''){
-        generaLogout(user.username);
-    } else {
-        generaLogin();
-    }
-}
-```
-
-La funzione `visualizzaNavbar()` è responsabile della generazione dinamica della navbar. Innanzitutto, ottiene le informazioni sull'utente chiamando la funzione asincrona `testLogin()`. Se l'utente è loggato, viene generata la navbar di benvenuto attraverso `generaLogout()`, altrimenti viene mostrata la navbar di login attraverso `generaLogin()`.
-
-#### **3. Funzione `testLogin()`**
-
-```javascript
-async function testLogin(){
-    let dati = {};
-    let ritorno = null;
-    dati.action = "userInfo";
-    url = "./Control/userControl.php";
-
-    let obj = await fetch(url, {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dati)
-    }).then((response) => response.json())
-    .then((data) => {
-        ritorno = data;
-    });
-
-    return ritorno;
-}
-```
-
-La funzione `testLogin()` effettua una richiesta asincrona al server per ottenere le informazioni sull'utente. Utilizza l'API `fetch` per inviare una richiesta POST al server. Le informazioni ottenute vengono restituite sotto forma di oggetto JSON.
-
-#### **4. Funzione `generaLogout(username)`**
-
-```javascript
-function generaLogout(username){
-    let newWelcomeLi = document.createElement("li");
-    newWelcomeLi.classList.add("nav-item");
-    let newSpan = document.createElement("span");
-    newSpan.classList.add("nav-link");
-    newSpan.innerText = "Benvenuto " + username;
-
-    newWelcomeLi.appendChild(newSpan);
-
-    document.getElementById("RightNavList").appendChild(newWelcomeLi);
-
-    let newLogoutLi = document.createElement("li");
-    newLogoutLi.classList.add("nav-item");
-    let newA = document.createElement("a");
-    newA.classList.add("nav-link");
-    newA.href = "./Control/userControl.php?logout=logout";
-    newA.innerText = "Logout";
-
-    newLogoutLi.appendChild(newA);
-    document.getElementById("RightNavList").appendChild(newLogoutLi);
-}
-```
-
-La funzione `generaLogout(username)` crea dinamicamente la navbar quando l'utente è loggato. Aggiunge un elemento di benvenuto e un elemento per il logout alla navbar.
