@@ -34,12 +34,13 @@ Questa funzione `testLogin()` sarà utile per verificare lo stato di accesso del
 Introdurremo ora il fatto che nel file `userControl.php` sarà aggiunta una funzione chiamata `testLogin()` per richiamare il modello utente. Questa funzione verrà spiegata in dettaglio di seguito.
 
 ```php
-if ($Dati["action"] == "testLogin") {
-    // Se l'azione è "testLogin," chiama la funzione "testLogin" dal modello utente.
+if ($Dati["action"] == "userInfo") {
+    // Se l'azione è "userInfo," chiama la funzione "testLogin" dal modello utente.
     // Questa funzione controlla se l'utente è loggato e restituisce il risultato.
 
     $risultato = testLogin();
-    echo json_encode(['risultato' => $risultato]);
+    echo json_encode(['username'=>$risultato]);
+
 }
 ```
 
@@ -47,9 +48,9 @@ if ($Dati["action"] == "testLogin") {
 
 La funzione `testLogin()` è utilizzata per verificare se un utente è attualmente loggato nell'applicazione. Ecco come funziona:
 
-1. La condizione `if ($Dati["action"] == "testLogin")` verifica se l'azione specificata nei dati inviati corrisponde a "testLogin." Questo è il modo in cui il controllore determina quale operazione deve essere eseguita.
+1. La condizione `if ($Dati["action"] == "userInfo")` verifica se l'azione specificata nei dati inviati corrisponde a "userInfo." Questo è il modo in cui il controllore determina quale operazione deve essere eseguita.
 
-2. Se l'azione è "testLogin," viene chiamata la funzione `testLogin()`.
+2. Se l'azione è "userInfo," viene chiamata la funzione `testLogin()`.
 
 3. All'interno della funzione, viene verificato se l'utente ha una sessione attiva. La funzione `isset($_SESSION["username"])` controlla se la variabile di sessione "username" è definita. Se lo è, significa che l'utente è loggato, e il suo username viene restituito come risultato.
 
