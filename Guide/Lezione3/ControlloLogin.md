@@ -172,6 +172,10 @@ function generaLogout(username){
 }
 ```
 
+---
+
+## Spiegazione dettagliata Navbar.JS
+
 #### **1. Evento "DOMContentLoaded"**
 
 ```javascript
