@@ -236,7 +236,7 @@ if(isset($_GET["logout"])){
 Per attivare la funzione di logout, l'utente può accedere a `userControl.php` includendo il parametro `logout` nella richiesta GET. Ad esempio:
 
 ```
-../Control/userControl.php?logout=logout
+./Control/userControl.php?logout=logout
 ```
 
 Questa implementazione assicura che l'utente venga disconnesso correttamente dal sistema, terminando la sessione e reindirizzandolo a `index.php` con l'indicazione che il logout è avvenuto con successo.
