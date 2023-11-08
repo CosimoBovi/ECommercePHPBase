@@ -206,7 +206,9 @@ Per attivare la funzione di logout, l'utente può accedere a `userControl.php` i
 
 Questa implementazione assicura che l'utente venga disconnesso correttamente dal sistema, terminando la sessione e reindirizzandolo a `index.php` con l'indicazione che il logout è avvenuto con successo.
 
+---
 
+---
 
 ---
 
