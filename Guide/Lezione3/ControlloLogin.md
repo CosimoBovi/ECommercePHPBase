@@ -206,6 +206,7 @@ A titolo di esempio di seguito è mostrata la spiegazione dettagliata per la cre
 
 6. **`newA.innerText="Logout";`**: Impostazione del testo visibile nel link di logout come "Logout". Questo è il testo che l'utente vedrà nella barra di navigazione.
 
+7. La riga `newLogoutLi.appendChild(newA);` aggiunge l'elemento `<a>` (il link di logout) come figlio dell'elemento `<li>` appena creato. In altre parole, sta inserendo il link di logout all'interno del tag `<li>`, rendendolo parte del contenuto di quest'ultimo.
 
 
 # Aggiunta Logout nel file userControl.php
