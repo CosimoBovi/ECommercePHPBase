@@ -172,6 +172,42 @@ function generaLogout(username){
 }
 ```
 
+
+# Aggiunta Logout nel file userControl.php
+
+Nel file `userControl.php`, sarà implementato un codice dedicato alla gestione del logout dell'utente. Questo codice è essenziale per garantire una corretta terminazione della sessione quando un utente decide di effettuare il logout dal sistema.
+
+```php
+if(isset($_GET["logout"])){
+    session_start();
+    session_destroy();
+    header('location: ../index.php?logout');
+    exit();
+}
+```
+
+1. **`if(isset($_GET["logout"]))`**: Verifica se il parametro "logout" è presente nella richiesta GET. Questo parametro sarà incluso quando l'utente sceglie di effettuare il logout.
+
+2. **`session_start()`**: Inizia o riprende la sessione esistente.
+
+3. **`session_destroy()`**: Distrugge tutti i dati registrati in una sessione. Questo passo è fondamentale per garantire la corretta terminazione della sessione dell'utente.
+
+4. **`header('location: ../index.php?logout')`**: Reindirizza l'utente alla pagina principale (`index.php`) con un parametro aggiuntivo "logout" nell'URL. Questo parametro può essere utilizzato per fornire un feedback all'utente sul successo del logout.
+
+5. **`exit()`**: Termina l'esecuzione dello script PHP dopo aver effettuato il reindirizzamento. Questo previene l'esecuzione di ulteriori istruzioni che potrebbero influenzare il comportamento della pagina dopo il logout.
+
+### **Utilizzo della Funzione di Logout**
+
+Per attivare la funzione di logout, l'utente può accedere a `userControl.php` includendo il parametro `logout` nella richiesta GET. Ad esempio:
+
+```
+../Control/userControl.php?logout=logout
+```
+
+Questa implementazione assicura che l'utente venga disconnesso correttamente dal sistema, terminando la sessione e reindirizzandolo a `index.php` con l'indicazione che il logout è avvenuto con successo.
+
+
+
 ---
 
 ## Spiegazione dettagliata Navbar.JS
