@@ -42,7 +42,7 @@ Verrai reindirizzato alla pagina principale di phpMyAdmin.
 Per creare un database, segui questi passaggi:
 
 1. Fai clic sulla scheda **Database**.
-2. Nella casella **Nome database**, digita il nome del database che desideri creare.
+2. Nella casella **Nome database**, digita il nome del database che desideri creare, in questa guida utilizzerò ***ecommercedb***
 3. Fai clic sul pulsante **Crea**.
 
 
