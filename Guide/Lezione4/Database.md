@@ -45,8 +45,31 @@ Per creare un database, segui questi passaggi:
 2. Nella casella **Nome database**, digita il nome del database che desideri creare, in questa guida utilizzerò ***ecommercedb***
 3. Fai clic sul pulsante **Crea**.
 
+# Dove scrivere le query
+
+1. Accedi a phpMyAdmin.
+
+Per accedere a phpMyAdmin, apri un browser web e inserisci l'indirizzo **http://localhost/phpmyadmin**.
+
+2. Seleziona il database su cui desideri eseguire la query.
+
+Nella barra laterale sinistra, seleziona il database su cui desideri eseguire la query.
+
+3. Fai clic sulla scheda **SQL**.
+
+Nella parte superiore della pagina, fai clic sulla scheda **SQL**.
+
+4. Digita la query che desideri eseguire nella casella **Esegui query**.
+
+Nella casella **Esegui query**, digita la query che desideri eseguire.
+
+5. Fai clic sul pulsante **Esegui**.
+
+Fai clic sul pulsante **Esegui** in basso a destra per eseguire la query.
 
 # Modello Fisico Utenti ( Create Table)
+
+Seguendo la guida precedente, scriviamo le query per creare le nostre tabelle
 
 ```sql
 CREATE TABLE Users (
