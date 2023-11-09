@@ -11,7 +11,7 @@ Nel nostro modello logico, ci concentreremo su due tabelle principali:
 **1. Tabella "Users":**
    - **UserID:** Questo campo rappresenta un identificatore unico per ciascun utente. Sarà utilizzato per distinguere gli utenti in modo univoco.
    - **Username:** Qui vengono memorizzati i nomi utente degli utenti registrati.
-   - **MAil:** Qui vengono memorizzate le mail degli utenti registrati.
+   - **Mail:** Qui vengono memorizzate le mail degli utenti registrati.
    - **Password:** Questo campo conterrà le password degli utenti. È fondamentale assicurarsi che le password siano crittografate e sicure.
    - **Usertypeid:** Questo campo stabilisce una relazione tra la tabella "Users" e la tabella "UserTypes" tramite un identificatore. Lo useremo per determinare il tipo di utente (ad esempio, amministratore, utente normale) collegando il campo "Usertypeid" alla tabella "UserTypes".
 
@@ -21,6 +21,34 @@ Nel nostro modello logico, ci concentreremo su due tabelle principali:
    - **Description:** Questo campo può contenere una breve descrizione del tipo di utente, offrendo ulteriori dettagli.
 
 Le due tabelle sono collegate tra loro attraverso il campo "Usertypeid," consentendoci di associare ogni utente a un tipo specifico.
+
+# Attive e Gestire il DB
+
+Per attivare il server MySQL con XAMPP, segui questi passaggi:
+
+1. Apri il pannello di controllo di XAMPP.
+2. Clicca sul pulsante **Start** accanto al servizio **MySQL**.
+
+Il server MySQL verrà avviato e apparirà il seguente messaggio:
+
+```
+[MySQL] MySQL started successfully.
+```
+
+**Accedere a phpMyAdmin**
+
+Per accedere a phpMyAdmin pri un browser web e inserisci l'indirizzo **http://localhost/phpmyadmin**.
+
+Verrai reindirizzato alla pagina principale di phpMyAdmin.
+
+**Creare un database**
+
+Per creare un database, segui questi passaggi:
+
+1. Fai clic sulla scheda **Database**.
+2. Nella casella **Nome database**, digita il nome del database che desideri creare.
+3. Fai clic sul pulsante **Crea**.
+
 
 # Modello Fisico Utenti ( Create Table)
 
