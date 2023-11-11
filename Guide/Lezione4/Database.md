@@ -117,29 +117,36 @@ Per collegare il nostro database al PHP useremo delle stored procedure, cioè de
 
 ```sql
 DELIMITER //
-CREATE PROCEDURE GetPasswordByUsernameOrEmail(
+CREATE PROCEDURE GetPasswordByUsername(
     IN inputData VARCHAR(100)
 )
 BEGIN
-    -- Cerca sia per username che per email e restituisci la password trovata
-    SELECT Password FROM Users WHERE Username = inputData OR Mail = inputData;
+    -- Cerca l'username nella tabella Users e restituisci la password trovata
+    SELECT Password FROM Users WHERE Username = inputData;
 END //
 DELIMITER ;
 ```
 
-- `DELIMITER //`: Inizia impostando un nuovo delimitatore temporaneo (`//`) per consentire la definizione della stored procedure senza conflitti con il delimitatore di istruzioni SQL predefinito (`;`).
+**Spiegazione Dettagliata:**
 
-- `CREATE PROCEDURE GetPasswordByUsernameOrEmail(IN inputData VARCHAR(100))`: Questa riga crea una nuova stored procedure chiamata `GetPasswordByUsernameOrEmail`. La stored procedure accetta un parametro di input `inputData`, che deve essere una stringa di testo con una lunghezza massima di 100 caratteri. Questo parametro sarà utilizzato per passare un valore (username o email) alla stored procedure in modo da cercare la password corrispondente.
+1. **DELIMITER //:** Questo imposta un delimitatore diverso (`//`) per consentire la definizione di stored procedure con istruzioni SQL più complesse.
 
-- `BEGIN`: Segna l'inizio del corpo della stored procedure. Tutto ciò che segue tra `BEGIN` e `END` costituisce il corpo della procedura.
+2. **CREATE PROCEDURE GetPasswordByUsername(...):** Questa riga inizia la definizione della stored procedure denominata `GetPasswordByUsername`. La stored procedure accetta un parametro di input `inputData` di tipo VARCHAR(100), che rappresenta l'username.
 
-- `SELECT Password FROM Users WHERE Username = inputData OR Mail = inputData;`: Questa è la parte principale della stored procedure. Utilizza una query SQL `SELECT` per cercare la password nell'insieme di dati della tabella "Users." La query è strutturata come segue:
-  - `SELECT Password`: Richiede la selezione della colonna "Password" dalla tabella "Users".
-  - `FROM Users`: Specifica che la tabella da cui verrà selezionata la colonna è "Users."
-  - `WHERE Username = inputData OR Mail = inputData`: Impone una condizione per la selezione, cercando corrispondenze nell'attributo "Username" o "Mail" della tabella "Users" in base al valore passato come parametro `inputData`.
-  
-- `END //`: Segna la fine del corpo della stored procedure.
+3. **BEGIN:** Segna l'inizio del corpo della stored procedure.
 
-- `DELIMITER ;`: Ripristina il delimitatore di istruzioni SQL predefinito (`;`) per le query successive.
+4. **SELECT Password FROM Users WHERE Username = inputData;:** Questa istruzione SQL effettua una query sulla tabella `Users`. Cerca una riga in cui il campo `Username` corrisponde all'`inputData` fornito. Se trova una corrispondenza, restituisce la password associata a quell'username.
 
-In sintesi, questa stored procedure accetta un valore (username o email) come parametro di input, quindi cerca nella tabella "Users" una corrispondenza in base a questo valore. Se una corrispondenza viene trovata, la stored procedure restituirà la password associata. Questo è un metodo sicuro e riusabile per ottenere la password di un utente in base al suo username o email e rappresenta un esempio di utilizzo delle stored procedure per semplificare le interrogazioni del database nel tuo codice PHP, migliorando la sicurezza e la manutenibilità.
+5. **END //:** Segna la fine del corpo della stored procedure.
+
+6. **DELIMITER ;:** Ripristina il delimitatore predefinito (`;`) alla fine della definizione della stored procedure.
+
+**Importanza dell'Uso delle Stored Procedure:**
+
+- **Sicurezza:** Le stored procedure possono contribuire a prevenire attacchi di SQL injection, poiché i parametri vengono trattati in modo sicuro.
+
+- **Riusabilità del Codice:** Le stored procedure possono essere richiamate da più parti dell'applicazione, promuovendo la riusabilità del codice.
+
+- **Ottimizzazione delle Prestazioni:** Le stored procedure possono essere ottimizzate e memorizzate nella cache del database per migliorare le prestazioni delle query frequenti.
+
+Utilizzando stored procedure, si favorisce una gestione più sicura, efficiente e organizzata delle operazioni nel database.
