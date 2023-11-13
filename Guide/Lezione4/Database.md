@@ -146,6 +146,36 @@ DELIMITER ;
 
 Utilizzando stored procedure, si favorisce una gestione più sicura, efficiente e organizzata delle operazioni nel database.
 
+# Inserimento di un utente
+
+Creiamo ora una stored procedure per inserire un nuovo utente nel dB:
+
+```sql
+DELIMITER //
+
+CREATE PROCEDURE InsertUser(
+    IN p_Username VARCHAR(50),
+    IN p_Password VARCHAR(255),
+    IN p_Mail VARCHAR(100),
+    IN p_Usertypeid INT
+)
+BEGIN
+    -- Inserisce un nuovo utente nella tabella Users
+    INSERT INTO Users (Username, Password, Mail, Usertypeid)
+    VALUES (p_Username, p_Password, p_Mail, p_Usertypeid);
+END //
+
+DELIMITER ;
+```
+
+Spiegazione dettagliata:
+
+1. **CREATE PROCEDURE InsertUser(...)**: Inizia la definizione di una nuova stored procedure chiamata "InsertUser". La stored procedure accetta quattro parametri: Username, Password, Mail e Usertypeid.
+
+2. **INSERT INTO Users ...**: Esegue l'istruzione SQL di inserimento che aggiunge un nuovo utente alla tabella "Users" con i valori passati come parametri.
+
+
+
 # Come consegnare il database
 
 **E' importante ricordarsi di salvare il database dopo averlo creato o modificato**
