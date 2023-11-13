@@ -70,6 +70,12 @@ Fai clic sul pulsante **Esegui** in basso a destra per eseguire la query.
 Seguendo la guida precedente, scriviamo le query per creare le nostre tabelle
 
 ```sql
+CREATE TABLE UserTypes (
+    Usertypeid INT AUTO_INCREMENT PRIMARY KEY,
+    Type VARCHAR(50) NOT NULL,
+    Description VARCHAR(255)
+);
+
 CREATE TABLE Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50) NOT NULL UNIQUE,
@@ -80,16 +86,13 @@ CREATE TABLE Users (
 );
 ```
 
-**Creazione della Tabella "UserTypes":**
-```sql
-CREATE TABLE UserTypes (
-    Usertypeid INT AUTO_INCREMENT PRIMARY KEY,
-    Type VARCHAR(50) NOT NULL,
-    Description VARCHAR(255)
-);
-```
-
 Ora, spieghiamo ciascuna di queste query:
+
+**Creazione della Tabella "UserTypes":**
+- `CREATE TABLE UserTypes`: Questa parte inizia la definizione della tabella "UserTypes".
+- `(Usertypeid INT AUTO_INCREMENT PRIMARY KEY)`: Questa riga crea un campo chiamato "Usertypeid" che è un intero, si auto-incrementa e funge da chiave primaria.
+- `(Type VARCHAR(50) NOT NULL)`: Questa riga definisce il campo "Type" come una stringa di massimo 50 caratteri e richiede che sia obbligatorio.
+- `(Description VARCHAR(255))`: Questa riga crea il campo "Description" come una stringa di massimo 255 caratteri, ma non richiede che sia obbligatorio.
 
 **Creazione della Tabella "Users":**
 - `CREATE TABLE Users`: Questa parte inizia la definizione della tabella "Users".
@@ -99,12 +102,6 @@ Ora, spieghiamo ciascuna di queste query:
 - `(Password VARCHAR(255) NOT NULL)`: Questa riga crea il campo "Password" come una stringa di massimo 255 caratteri e richiede che sia obbligatorio.
 - `(Usertypeid INT NOT NULL)`: Questa riga definisce il campo "Usertypeid" come un intero e richiede che sia obbligatorio.
 - `FOREIGN KEY (Usertypeid) REFERENCES UserTypes(Usertypeid)`: Questa riga crea una relazione tra il campo "Usertypeid" nella tabella "Users" e il campo "Usertypeid" nella tabella "UserTypes". Questo permette di collegare ogni utente a un tipo specifico.
-
-**Creazione della Tabella "UserTypes":**
-- `CREATE TABLE UserTypes`: Questa parte inizia la definizione della tabella "UserTypes".
-- `(Usertypeid INT AUTO_INCREMENT PRIMARY KEY)`: Questa riga crea un campo chiamato "Usertypeid" che è un intero, si auto-incrementa e funge da chiave primaria.
-- `(Type VARCHAR(50) NOT NULL)`: Questa riga definisce il campo "Type" come una stringa di massimo 50 caratteri e richiede che sia obbligatorio.
-- `(Description VARCHAR(255))`: Questa riga crea il campo "Description" come una stringa di massimo 255 caratteri, ma non richiede che sia obbligatorio.
 
 Queste query SQL definiscono la struttura delle tabelle "Users" e "UserTypes" e stabiliscono una relazione tra di loro tramite il campo "Usertypeid." 
 
