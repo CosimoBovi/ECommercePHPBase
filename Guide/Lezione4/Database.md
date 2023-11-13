@@ -29,13 +29,13 @@ Per attivare il server MySQL con XAMPP, segui questi passaggi:
 1. Apri il pannello di controllo di XAMPP.
 2. Clicca sul pulsante **Start** accanto al servizio **MySQL**.
 
-**Accedere a phpMyAdmin**
+### Accedere a phpMyAdmin
 
 Per accedere a phpMyAdmin pri un browser web e inserisci l'indirizzo **http://localhost/phpmyadmin**.
 
 Verrai reindirizzato alla pagina principale di phpMyAdmin.
 
-**Creare un database**
+###Creare un database
 
 Per creare un database, segui questi passaggi:
 
