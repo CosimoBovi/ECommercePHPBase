@@ -35,7 +35,7 @@ Per accedere a phpMyAdmin pri un browser web e inserisci l'indirizzo **http://lo
 
 Verrai reindirizzato alla pagina principale di phpMyAdmin.
 
-###Creare un database
+### Creare un database
 
 Per creare un database, segui questi passaggi:
 
