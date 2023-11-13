@@ -145,3 +145,64 @@ DELIMITER ;
 - **Ottimizzazione delle Prestazioni:** Le stored procedure possono essere ottimizzate e memorizzate nella cache del database per migliorare le prestazioni delle query frequenti.
 
 Utilizzando stored procedure, si favorisce una gestione più sicura, efficiente e organizzata delle operazioni nel database.
+
+# Come consegnare il database
+
+**E' importante ricordarsi di salvare il database dopo averlo creato o modificato**
+
+Per salvare il database seguire questi passaggi:
+
+1. **Accedi a phpMyAdmin:**
+   - Apri il tuo browser e vai all'indirizzo in cui è installato phpMyAdmin (http://localhost/phpmyadmin/).
+
+2. **Seleziona il Database:**
+   - Nella barra laterale sinistra, trova e seleziona il database che desideri esportare.
+
+3. **Scegli l'Opzione "Esporta":**
+   - Nella parte superiore della pagina, vai alla scheda "Esporta" (Export).
+
+4. **Configura le Opzioni di Esportazione:**
+   - Lascia selezionato il formato "SQL".
+
+5. **Scorri verso il Basso e Clicca su "Vai" o "Esegui":**
+   - Scendi verso il basso della pagina e trova il pulsante "Vai" o "Esegui" per avviare il processo di esportazione.
+
+6. **Salva il File .sql:**
+   - Verrà generato un file .sql contenente il dump del tuo database.
+   - Una finestra di dialogo ti chiederà di scaricare il file. 
+   - Salva il file .sql nella posizione desiderata sul tuo computer.
+
+Ora hai esportato con successo il tuo database in formato .sql utilizzando phpMyAdmin. Questo file può essere utilizzato per importare il database in un'altra installazione di MySQL o per il backup dei dati.
+
+# Come riprendere il database
+
+Per riprendere il database salvato in precedenza dobbiamo importare il file .sql creato
+
+1. **Accedi a phpMyAdmin:**
+   - Apri il tuo browser e vai all'indirizzo in cui è installato phpMyAdmin (solitamente http://localhost/phpmyadmin/).
+
+2. **Crea un Nuovo Database :**
+    Vai alla scheda "Database" e crea un nuovo database seguendo [Questa guida](#Creare-un-database).
+
+3. **Seleziona il Database di Destinazione:**
+   - Nella barra laterale sinistra, trova e seleziona il database di destinazione in cui vuoi importare i dati.
+
+4. **Vai alla Scheda "Importa" (Import):**
+   - Sulla barra di navigazione superiore, vai alla scheda "Importa" (Import).
+
+5. **Carica il File .sql:**
+   - Sulla pagina di importazione, fai clic sul pulsante "Scegli file" o "Sfoglia" per selezionare il file .sql che hai esportato in precedenza.
+   - Assicurati che il formato del file sia SQL.
+
+6. **Configura le Opzioni (Opzionale):**
+   - Puoi lasciare le opzioni predefinite o configurarle in base alle tue esigenze.
+   - Assicurati che l'opzione "Ricrea" (Recreate) sia selezionata se stai importando in un nuovo database.
+
+7. **Fai clic su "Vai" o "Esegui":**
+   - Scorri verso il basso e trova il pulsante "Vai" o "Esegui" per avviare il processo di importazione.
+
+8. **Attendi il Completamento:**
+   - Il processo di importazione può richiedere del tempo in base alle dimensioni del file .sql.
+   - Attendi fino a quando vedrai un messaggio di conferma che indica che l'importazione è stata completata con successo.
+
+Ora hai importato con successo il database .sql in phpMyAdmin. Puoi verificare la presenza dei dati all'interno del database di destinazione.
