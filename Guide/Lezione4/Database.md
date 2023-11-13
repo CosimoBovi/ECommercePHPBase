@@ -185,24 +185,15 @@ Per riprendere il database salvato in precedenza dobbiamo importare il file .sql
     Vai alla scheda "Database" e crea un nuovo database seguendo [Questa guida](#Creare-un-database).
 
 3. **Seleziona il Database di Destinazione:**
-   - Nella barra laterale sinistra, trova e seleziona il database di destinazione in cui vuoi importare i dati.
+   - Nella barra laterale sinistra, trova e seleziona il database appena creato.
 
 4. **Vai alla Scheda "Importa" (Import):**
    - Sulla barra di navigazione superiore, vai alla scheda "Importa" (Import).
 
 5. **Carica il File .sql:**
    - Sulla pagina di importazione, fai clic sul pulsante "Scegli file" o "Sfoglia" per selezionare il file .sql che hai esportato in precedenza.
-   - Assicurati che il formato del file sia SQL.
 
-6. **Configura le Opzioni (Opzionale):**
-   - Puoi lasciare le opzioni predefinite o configurarle in base alle tue esigenze.
-   - Assicurati che l'opzione "Ricrea" (Recreate) sia selezionata se stai importando in un nuovo database.
-
-7. **Fai clic su "Vai" o "Esegui":**
+6. **Fai clic su "Vai" o "Esegui":**
    - Scorri verso il basso e trova il pulsante "Vai" o "Esegui" per avviare il processo di importazione.
-
-8. **Attendi il Completamento:**
-   - Il processo di importazione può richiedere del tempo in base alle dimensioni del file .sql.
-   - Attendi fino a quando vedrai un messaggio di conferma che indica che l'importazione è stata completata con successo.
 
 Ora hai importato con successo il database .sql in phpMyAdmin. Puoi verificare la presenza dei dati all'interno del database di destinazione.
