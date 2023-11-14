@@ -22,7 +22,7 @@ Nel nostro modello logico, ci concentreremo su due tabelle principali:
 
 Le due tabelle sono collegate tra loro attraverso il campo "Usertypeid," consentendoci di associare ogni utente a un tipo specifico.
 
-# Attive e Gestire il DB
+# Attivare e Gestire il DB
 
 Per attivare il server MySQL con XAMPP, segui questi passaggi:
 
