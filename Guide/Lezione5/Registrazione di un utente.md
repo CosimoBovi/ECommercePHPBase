@@ -16,7 +16,11 @@ VALUES
 
 In questo modo abbiamo i tre tipi di utenti che possiamo salvare all'interno del nostro database.
 
-# Modifiche a userModel.php
+# Ibntroduzione alle modifiche al progetto
 
 All'interno del nostro progetto MVC gestiremo direttamente i tipi di utenti all'interno del Controllore e del Modello degli Utenti anziché crearne uno separato. Questa scelta è stata motivata dal fatto che i tipi di utenti sono molto legati all'utente stesso, e aggiungere altri file complicherebbe solo il nostro sistema.
+
+Per applicare i nuovi elementi al nostro sitema partirò dal modificare il Model dell'utente, poi passerò al Control e infine passerò alla view. Questo approccio è definito top down, ed è molto utilizzato quando si vogliono aggiungere nuovi elementi ad un progetto mvc.
+
+# Modifiche a userModel.php
 
