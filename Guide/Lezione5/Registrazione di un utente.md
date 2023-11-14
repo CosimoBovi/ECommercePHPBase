@@ -24,10 +24,11 @@ Per applicare i nuovi elementi al nostro sitema partirò dal modificare il Model
 
 # Modifiche a userModel.php
 
+Allinterno dell'userModel.php creato in precedenza, aggiungiamo la seguente funzione per inserire un utente.
 
 
 ```php
-<?php
+
 function insertUser($username, $password, $usertype) {
     $servername = "localhost";
     $dbname = "ecommercedb";
@@ -107,7 +108,7 @@ Questa procedura consente di distinguere tra l'errore di inserimento dovuto a un
 
 # Modifiche a userControl.php
 
-Le modifiche ad userControl sono molto semplici, in quanto seguiremo lo schema già visto in precedenza qui [CONTROL userControl.php](../Lezione2/MVC.md#contrl-usercontrolphp)
+Le modifiche ad userControl sono molto semplici, in quanto seguiremo lo schema già visto in precedenza qui [CONTROL userControl.php](../Lezione2/MVC.md#contrl-usercontrolphp) aggiungendo il seguente if di seguito agli altri.
 
 ```php
 if ($Dati["action"] == "register") {
