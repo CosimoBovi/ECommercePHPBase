@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Nov 13, 2023 alle 13:04
--- Versione del server: 10.4.21-MariaDB
--- Versione PHP: 8.0.10
+-- Creato il: Nov 14, 2023 alle 08:34
+-- Versione del server: 10.4.27-MariaDB
+-- Versione PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,9 +25,15 @@ DELIMITER $$
 --
 -- Procedure
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetPasswordByUsername` (IN `inputData` VARCHAR(100))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetPasswordByUsername` (IN `inputData` VARCHAR(100))   BEGIN
     -- Cerca l'username nella tabella Users e restituisci la password trovata
     SELECT Password FROM Users WHERE Username = inputData;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUser` (IN `p_Username` VARCHAR(50), IN `p_Password` VARCHAR(255), IN `p_Mail` VARCHAR(100), IN `p_Usertypeid` INT)   BEGIN
+    -- Inserisce un nuovo utente nella tabella Users
+    INSERT INTO Users (Username, Password, Mail, Usertypeid)
+    VALUES (p_Username, p_Password, p_Mail, p_Usertypeid);
 END$$
 
 DELIMITER ;
@@ -44,7 +50,7 @@ CREATE TABLE `users` (
   `Mail` varchar(100) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Usertypeid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -56,7 +62,7 @@ CREATE TABLE `usertypes` (
   `Usertypeid` int(11) NOT NULL,
   `Type` varchar(50) NOT NULL,
   `Description` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indici per le tabelle scaricate
