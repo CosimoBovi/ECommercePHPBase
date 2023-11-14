@@ -107,7 +107,7 @@ Questa procedura consente di distinguere tra l'errore di inserimento dovuto a un
 
 # Modifiche a userControl.php
 
-Le modifiche ad userControl sono molto semplici, in quanto seguiremo lo schema già visto in precedenza qui [CONTROL userControl.php](Guide/Lezione2/MVC.md#contrl-usercontrolphp)
+Le modifiche ad userControl sono molto semplici, in quanto seguiremo lo schema già visto in precedenza qui [CONTROL userControl.php](../Lezione2/MVC.md#contrl-usercontrolphp)
 
 ```php
 if ($Dati["action"] == "register") {
