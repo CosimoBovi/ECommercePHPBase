@@ -24,3 +24,54 @@ Per applicare i nuovi elementi al nostro sitema partirò dal modificare il Model
 
 # Modifiche a userModel.php
 
+
+
+```php
+<?php
+function insertUser($username, $password, $usertype) {
+    $servername = "localhost";
+    $dbname = "ecommercedb";
+    $username = "root";
+    $password = "";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Pulizia dei dati per prevenire SQL injection
+        $username = htmlspecialchars($username);
+        $usertype = htmlspecialchars($usertype);
+
+        // Criptazione della password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare("CALL insert_user(:username, :password, :usertype)");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':usertype', $usertype);
+
+        $stmt->execute();
+
+        echo "Utente inserito con successo!";
+    } catch(PDOException $e) {
+        echo "Errore nell'inserimento dell'utente: " . $e->getMessage();
+    }
+
+    $conn = null;
+}
+?>
+```
+
+### Spiegazione Dettagliata:
+
+1. **Connessione al Database:** Utilizza PDO per connettersi al database MySQL.
+
+2. **Pulizia dei Dati:** Utilizza `htmlspecialchars` per evitare attacchi di XSS (Cross-Site Scripting).
+
+3. **Criptazione della Password:** Utilizza `password_hash` per criptare la password in modo sicuro prima di salvarla nel database.
+
+4. **Preparazione della Query:** Utilizza prepared statements per evitare SQL injection e inserire i valori in modo sicuro.
+
+5. **Esecuzione della Query:** Esegue la stored procedure con `execute()`.
+
+6. **Gestione degli Errori:** Utilizza `try-catch` per gestire gli errori nel caso in cui la connessione o l'esecuzione della query falliscano.
