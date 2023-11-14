@@ -103,3 +103,24 @@ L'uso del costrutto `try-catch` è cruciale per gestire gli errori. All'interno 
 4. **Restituzione dei Codici di Errore:** Se viene rilevato 'Username' nel messaggio di errore, viene restituito il codice `2` come indicatore di errore per l'username già esistente. Se viene rilevato 'Mail' nel messaggio di errore, viene restituito il codice `3` come indicatore di errore per l'email già esistente. Se non si rilevano queste stringhe nel messaggio di errore, viene restituito il codice `1` come errore generico.
 
 Questa procedura consente di distinguere tra l'errore di inserimento dovuto a un username già esistente e quello dovuto a un'email già presente nel database.
+
+
+# Modifiche a userControl.php
+
+Le modifiche ad userControl sono molto semplici, in quanto seguiremo lo schema già visto in precedenza qui [CONTROL userControl.php](Guide/Lezione2/MVC.md#contrl-usercontrolphp)
+
+```php
+if ($Dati["action"] == "register") {
+    // Leggi i dati di registrazione inviati dalla richiesta HTTP
+    $username = $Dati["username"];
+    $password = $Dati["password"];
+    $usertype = $Dati["usertype"];
+    
+    // Effettua la registrazione dell'utente
+    $registrationStatus = registerUser($username, $password, $usertype);
+    
+    // Restituisci lo stato della registrazione come risposta JSON
+    echo json_encode(['registrationStatus' => $registrationStatus]);
+}
+```
+
