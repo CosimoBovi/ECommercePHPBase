@@ -357,3 +357,35 @@ function registerUser(){
    - Se `registrationStatus` è 1, si verifica un errore generico e viene mostrato un messaggio di errore.
    - Se `registrationStatus` è 2, l'username inserito esiste già e viene mostrato un messaggio corrispondente.
    - Se `registrationStatus` è 3, l'indirizzo email inserito esiste già e viene mostrato un messaggio corrispondente.
+
+# Modifiche a Login.js
+
+Come ultima cosa diamo un modo all'utente per arrivare alla pagina di registrazione, per farlo aggiungo semplicemente un link ad un button nella pagina di login.php
+
+```php
+   <?php include_once 'header.php' ?>
+    <?php include_once 'navbar.php' ?>
+
+    <script src="./js/login.js"></script>
+
+    <div class="row w-100">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 justify-content-center">
+            <form>
+                <label class="w-25">username: </label> <input type="text" id="user" class="form-control w-100 my-2"> 
+                <label class="w-25">password: </label> <input type="password" id="pass" class="form-control w-100 my-2"> 
+                <input type="button" class="btn btn-success w-100 mt-5" onclick="login()" value="Entra">  
+                <a href="./register.php"><input type="button" class="btn btn-success w-100 mt-5" value="Registrati"> </a>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <?php include_once 'footer.php' ?>
+```
+
+il codice aggiunto è 
+
+```php
+<a href="./register.php"><input type="button" class="btn btn-success w-100 mt-5" value="Registrati"> </a>
+```
