@@ -6,4 +6,6 @@ Ora che abbiamo la possibilità di gestire gli utenti concentriamoci sulla gesti
 
 Per la tabella prodotti seguiremo questo modello logico
 
+```
 Products(ProductID, Name, Description, UnitPrice, ImageLink, UserSellerID)
+```
