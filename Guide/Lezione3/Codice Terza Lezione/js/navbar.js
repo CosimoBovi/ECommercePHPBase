@@ -9,7 +9,7 @@ async function visualizzaNavbar(){
 
     user = await testLogin();
 
-    if(user.username!=''){
+   if(user.username!=undefined){
         generaLogout(user.username);
     }else{
         generaLogin();
