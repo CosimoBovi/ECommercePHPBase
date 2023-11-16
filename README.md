@@ -20,6 +20,7 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
    - [CONTROL userControl.php](Guide/Lezione2/MVC.md#contrl-usercontrolphp)
    - [VIEW login.php](Guide/Lezione2/MVC.md#viewloginphp)
    - [VIEW login.js](Guide/Lezione2/MVC.md#viewloginjs)
+   - [Spiegazione Chiamate Asincrone](Guide/Lezione2/MVC.md#approfondimento-su-chiamate-asincrone-e-concetto-di-asincronia)
 - [Controllo Login](Guide/Lezione3/ControlloLogin.md)
    - [Aggiunte ad User Model](Guide/Lezione3/ControlloLogin.md#usermodelphp)
    - [Aggiunte ad User Control](Guide/Lezione3/ControlloLogin.md#usercontrolphp)
