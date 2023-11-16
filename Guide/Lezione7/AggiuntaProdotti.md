@@ -35,3 +35,48 @@ Ecco una spiegazione dettagliata dei campi della query fornita:
 - `ImageLink`: È un campo di tipo `VARCHAR(255)` che contiene il percorso dell'immagine del prodotto.
 - `UserSellerID`: È un campo di tipo `INT` che funge da chiave esterna (`FOREIGN KEY`) e fa riferimento alla colonna `UserID` della tabella `Users`. Indica l'utente venditore associato a questo prodotto ed è impostato come `NOT NULL` per garantire l'integrità dei dati.
 
+# productModel.php
+
+Creaiamo ora il file productModel.php all'interno della cartella che contiene i Model e iniziamo scrivendo la funzione per inserire un nuovo prodotto.
+
+```php
+function insertProduct($name, $description, $unitPrice, $imageLink, $userSellerID) {
+    $servername = "localhost";
+    $dbname = "ecommercedb";
+    $dbusername = "root";
+    $dbpassword = "";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Query per l'inserimento del prodotto
+        $sql = "INSERT INTO Products (Name, Description, UnitPrice, ImageLink, UserSellerID) VALUES (:name, :description, :unitPrice, :imageLink, :userSellerID)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':unitPrice', $unitPrice);
+        $stmt->bindParam(':imageLink', $imageLink);
+        $stmt->bindParam(':userSellerID', $userSellerID);
+
+        $stmt->execute();
+
+        return 0; // Ritorna 0 se l'inserimento è avvenuto con successo
+    } catch(PDOException $e) {
+        $errorCode = $e->getCode();
+
+        // Verifica il codice di errore per violazione delle chiavi univoche
+        if ($errorCode === '23000' || $errorCode === 1062) {
+            $errorMessage = $e->getMessage();
+
+            if (strpos($errorMessage, 'Duplicate entry') !== false) {
+                return 2; // Codice di errore per chiave duplicata
+            }
+        } else {
+            return 1; // Errore generico
+        }
+    }
+}
+```
+
+Questa funzione `insertProduct` prende in input i dettagli del prodotto e tenta di inserirli nella tabella `Products` del database. La struttura è molto simile a quella della funzione `insertUser` per l'inserimento dell'utente, ma adattata per i dettagli specifici del prodotto, come il nome, la descrizione, il prezzo, il link dell'immagine e l'ID del venditore. Se l'inserimento ha successo, la funzione restituisce `0`, altrimenti restituirà un codice di errore appropriato (ad esempio `1` per un errore generico, `2` per chiave duplicata).
