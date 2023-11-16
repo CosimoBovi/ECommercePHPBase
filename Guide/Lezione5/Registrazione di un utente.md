@@ -137,18 +137,19 @@ catch(PDOException $e) {
 Le modifiche ad userControl sono molto semplici, in quanto seguiremo lo schema già visto in precedenza qui [CONTROL userControl.php](../Lezione2/MVC.md#contrl-usercontrolphp) aggiungendo il seguente if di seguito agli altri.
 
 ```php
-if ($Dati["action"] == "register") {
-    // Leggi i dati di registrazione inviati dalla richiesta HTTP
-    $username = $Dati["username"];
-    $password = $Dati["password"];
-    $usertype = $Dati["usertype"];
-    
-    // Effettua la registrazione dell'utente
-    $registrationStatus = insertUser($username, $password, $usertype);
-    
-    // Restituisci lo stato della registrazione come risposta JSON
-    echo json_encode(['registrationStatus' => $registrationStatus]);
-}
+ if ($Dati["action"] == "register") {
+        // Leggi i dati di registrazione inviati dalla richiesta HTTP
+        $username = $Dati["username"];
+        $mail = $Dati["mail"];
+        $password = $Dati["password"];
+        $usertype = $Dati["usertype"];
+        
+        // Effettua la registrazione dell'utente
+        $registrationStatus = insertUser($username, $mail, $password, $usertype);
+        
+        // Restituisci lo stato della registrazione come risposta JSON
+        echo json_encode(['registrationStatus' => $registrationStatus]);
+    }
 ```
 
 
@@ -222,6 +223,7 @@ Creiamo ora una nuova pagina chiamata register.php simile a login.php per permet
         <div class="col-md-6 justify-content-center">
             <form id="registrationForm">
                 <label class="w-25">Username: </label> <input type="text" id="username" class=" form-control w-100 my-2"> <br>
+                <label class="w-25">email: </label> <input type="email" id="mail" class="form-control w-100 my-2"> <br>
                 <label class="w-25">Password: </label> <input type="password" id="password" class=" form-control w-100 my-2"> <br>
                 <label class="w-25">User Type: </label>
                 <select id="userType" class="form-control w-100 my-2">
@@ -298,3 +300,48 @@ In sintesi, questo script attende il caricamento completo della pagina e, una vo
 
 # register.js - registrazione di un utente
 
+Ora che il nostro form è completo aggiungiamo al js la funzione registerUser() che era presente nel button del form
+
+```js
+function registerUser(){
+
+    let username = document.getElementById('username').value;
+    let mail = document.getElementById('mail').value;
+    let password = document.getElementById('password').value;
+    let userType = document.getElementById('userType').value;
+
+    let dati = {
+        username: username,
+        mail: mail,
+        password: password,
+        usertype: userType,
+        action: "register"
+    };
+
+    let url = "./Control/userControl.php";
+
+    
+    let response =  fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dati)
+    }).then((response) => response.json())
+    .then((data) => {
+        
+        if(data.registrationStatus==0) {
+            alert("registrazione avvenuta con successo");
+            location.href="./index.php";
+        }else if(data.registrationStatus==1){
+            alert("errore");
+        }else if(data.registrationStatus==2){
+            alert("Username esistente");
+        }else if(data.registrationStatus==3){
+            alert("Mail esistente");
+        }
+    })
+    
+}
+
+```
