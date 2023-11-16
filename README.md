@@ -33,7 +33,5 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
    - [Creare un database](Guide/Lezione4/Database.md#creare-un-database)
    - [Dove scrivere le query](Guide/Lezione4/Database.md#dove-scrivere-le-query)
    - [Modello Fisico Utenti (Create Table)](Guide/Lezione4/Database.md#modello-fisico-utenti-create-table)
-   - [Controllo Password](Guide/Lezione4/Database.md#controllo-password)
-   - [Inserimento di un utente](Guide/Lezione4/Database.md#inserimento-di-un-utente)
    - [Come consegnare il database](Guide/Lezione4/Database.md#come-consegnare-il-database)
    - [Come riprendere il database](Guide/Lezione4/Database.md#come-riprendere-il-database)
