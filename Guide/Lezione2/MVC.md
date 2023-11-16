@@ -253,7 +253,7 @@ In sintesi, il codice JavaScript `login.js` gestisce la comunicazione tra la vis
 
 ---
 
-**Approfondimento su Chiamate Asincrone e Concetto di Asincronia:**
+### Approfondimento su Chiamate Asincrone e Concetto di Asincronia:
 
 Le chiamate asincrone e il concetto di asincronia sono fondamentali nello sviluppo web moderno. Ecco un approfondimento su questi concetti:
 
