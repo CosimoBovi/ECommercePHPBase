@@ -345,3 +345,15 @@ function registerUser(){
 }
 
 ```
+
+1. **Recupero dei dati**: La funzione recupera i valori inseriti negli input del form per `username`, `mail`, `password` e `userType`.
+
+2. **Creazione dei dati da inviare**: I dati recuperati vengono inseriti in un oggetto `dati`, insieme all'azione "register", in modo che possano essere inviati al server per la registrazione dell'utente.
+
+3. **Chiamata fetch**: Viene effettuata una richiesta `fetch` verso il server (`userControl.php`) usando il metodo POST, con intestazioni di tipo JSON, e includendo nel corpo della richiesta i dati dell'utente convertiti in formato JSON.
+
+4. **Gestione della risposta**: Una volta ottenuta la risposta dal server sotto forma di JSON, vengono gestiti i vari casi possibili:
+   - Se `registrationStatus` è 0, significa che la registrazione è avvenuta con successo e viene mostrato un messaggio di avvenuta registrazione. Successivamente l'utente viene reindirizzato alla pagina principale.
+   - Se `registrationStatus` è 1, si verifica un errore generico e viene mostrato un messaggio di errore.
+   - Se `registrationStatus` è 2, l'username inserito esiste già e viene mostrato un messaggio corrispondente.
+   - Se `registrationStatus` è 3, l'indirizzo email inserito esiste già e viene mostrato un messaggio corrispondente.
