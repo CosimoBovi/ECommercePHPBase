@@ -142,10 +142,64 @@ if ($Dati["action"] == "register") {
     $usertype = $Dati["usertype"];
     
     // Effettua la registrazione dell'utente
-    $registrationStatus = registerUser($username, $password, $usertype);
+    $registrationStatus = insertUser($username, $password, $usertype);
     
     // Restituisci lo stato della registrazione come risposta JSON
     echo json_encode(['registrationStatus' => $registrationStatus]);
 }
 ```
 
+
+# Estrazione dei tipi di utente in userModel.php
+
+Per permettere la registrazione di un utente è necessario fornire una scelta corretta dei tipi di utenti. Per questo dobbiamo scrivere una funzione che estragga i tipi di utenti nel database. Scegliamo di farlo in userModel.php
+
+```php
+function getAllUserTypes() {
+    $servername = "localhost";
+    $dbname = "ecommercedb";
+    $username = "root";
+    $password = "";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $conn->prepare("SELECT * FROM UserTypes WHERE type != 'Administrator'");
+        $stmt->execute();
+
+        $userTypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $userTypes;
+    } catch(PDOException $e) {
+        // Gestione degli errori
+        return false;
+    }
+}
+```
+Fonisco una spiegazione dettagliata degli elementi non visti in precedenza:
+
+1. **Preparazione della query SQL:** Dopo aver stabilito la connessione, la funzione prepara una query SQL per selezionare tutti gli elementi dalla tabella degli user types (`SELECT * FROM UserTypes WHERE type != 'Administrator'`). Eliminiamo gli amministratori perchè non permettiamo agli utenti di registrarsi come amministratore.
+
+2. **Recupero dei risultati:** Se la query è eseguita con successo, la funzione `$stmt->fetchAll(PDO::FETCH_ASSOC);` ottiene i dati risultanti dalla query. Essa itererà attraverso i risultati ottenuti e li inserirà uno per uno all'interno di un array.
+
+3. **Restituzione dei dati:** Alla fine, l'array che contiene tutti i tipi di utenti viene restituito alla parte del codice che ha invocato la funzione `getAllUserTypes()`.
+
+
+# Estrazione dei tipi di utente - Modifiche a userControl.php
+
+In userControl.php aggiungiamo un'altro if per gestire l'accesso alla funzione appena creata.
+
+```php
+if ($Dati["action"] == "getUserTypes") {
+    // Ottieni gli elementi dalla tabella UserTypes
+    $userTypes = getAllUserTypes();
+    
+    if ($userTypes !== false) {
+        // Restituisci tutti gli elementi come risposta JSON
+        echo json_encode($userTypes);
+    } else {
+        // Restituisci un messaggio di errore o un valore predefinito
+        echo json_encode(['error' => 'Failed to retrieve user types']);
+    }
+}
+```
