@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Nov 14, 2023 alle 08:34
+-- Creato il: Nov 16, 2023 alle 12:28
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -20,23 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ecommercedb`
 --
-
-DELIMITER $$
---
--- Procedure
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetPasswordByUsername` (IN `inputData` VARCHAR(100))   BEGIN
-    -- Cerca l'username nella tabella Users e restituisci la password trovata
-    SELECT Password FROM Users WHERE Username = inputData;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertUser` (IN `p_Username` VARCHAR(50), IN `p_Password` VARCHAR(255), IN `p_Mail` VARCHAR(100), IN `p_Usertypeid` INT)   BEGIN
-    -- Inserisce un nuovo utente nella tabella Users
-    INSERT INTO Users (Username, Password, Mail, Usertypeid)
-    VALUES (p_Username, p_Password, p_Mail, p_Usertypeid);
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -91,13 +74,13 @@ ALTER TABLE `usertypes`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `usertypes`
 --
 ALTER TABLE `usertypes`
-  MODIFY `Usertypeid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Usertypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Limiti per le tabelle scaricate
