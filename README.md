@@ -46,3 +46,7 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
   - [register.js - caricamento dinamico dei tipi di utenti](Guide/Lezione5/registrazione.md#registerjs---caricamento-dinamico-dei-tipi-di-utenti)
   - [register.js - registrazione di un utente](Guide/Lezione5/registrazione.md#registerjs---registrazione-di-un-utente)
   - [Modifiche a Login.js](Guide/Lezione5/registrazione.md#modifiche-a-loginjs)
+- [Login e Database](Guide/Lezione6/LoginEDatabase.md)
+  - [Modifiche a userModel.php](Guide/Lezione6/LoginEDatabase.md#modifiche-a-usermodelphp)
+  - [Modifiche a Login.js](Guide/Lezione6/LoginEDatabase.md#modifiche-a-loginjs)
+
