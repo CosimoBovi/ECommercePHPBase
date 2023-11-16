@@ -71,7 +71,7 @@ function insertUser($username, $password, $usertype) {
 
 Vediamo dettagliatamente come è strutturata:
 
-### Connessione al Database
+** 1. Connessione al Database **
 ```php
 $servername = "localhost";
 $dbname = "ecommercedb";
@@ -85,7 +85,7 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 - `PDO` è un'interfaccia per lavorare con database in PHP, e qui viene utilizzata per stabilire una connessione al database MySQL.
 - `setAttribute` viene usato per impostare il modo di gestione degli errori durante le operazioni col database. In questo caso, si imposta il livello di errore a `ERRMODE_EXCEPTION`, il che significa che verranno sollevate eccezioni in caso di errori.
 
-### Gestione dell'Inserimento
+** 2. Gestione dell'Inserimento **
 ```php
  // Hash della password prima di salvarla nel database
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -105,7 +105,7 @@ return 0; // Ritorna 0 se l'inserimento è avvenuto con successo
 - La query viene eseguita attraverso `$stmt->execute()`.
 - Se non ci sono errori e l'inserimento avviene con successo arriva fino al return e ritorna 0.
 
-### Gestione degli Errori
+** 3. Gestione degli Errori ** 
 ```php
 catch(PDOException $e) {
     $errorCode = $e->getCode();
