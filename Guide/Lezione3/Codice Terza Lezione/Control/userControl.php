@@ -13,10 +13,10 @@
         echo json_encode(['errore'=>$errore]);
     }
 
-    if ($Dati["action"] == "userInfo") {
+   if ($Dati["action"] == "userInfo") {
         
         $risultato = testLogin();
-        echo json_encode(['username'=>$risultato]);
+        echo json_encode($risultato);
 
 
     }
