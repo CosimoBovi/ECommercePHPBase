@@ -203,3 +203,7 @@ if ($Dati["action"] == "getUserTypes") {
     }
 }
 ```
+
+
+# VIEW registrazione utente - register.php
+
