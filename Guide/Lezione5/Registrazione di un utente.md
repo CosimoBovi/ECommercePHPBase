@@ -27,7 +27,7 @@ Per applicare i nuovi elementi al nostro sitema partirò dal modificare il Model
 Allinterno dell'userModel.php creato in precedenza, aggiungiamo la seguente funzione per inserire un utente.
 
 ```php
-function insertUser($username, $password, $usertype) {
+function insertUser($username, $mail, $password, $usertype) {
     $servername = "localhost";
     $dbname = "ecommercedb";
     $dbusername = "root";
@@ -41,9 +41,10 @@ function insertUser($username, $password, $usertype) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Query per l'inserimento dell'utente
-        $sql = "INSERT INTO Users (Username, Password, Usertypeid) VALUES (:username, :password, :usertype)";
+        $sql = "INSERT INTO Users (Username, Mail, Password, Usertypeid) VALUES (:username, :mail, :password, :usertype)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':mail', $mail);
         $stmt->bindParam(':password', $hashedPassword);
         $stmt->bindParam(':usertype', $usertype);
 
@@ -93,6 +94,7 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 $sql = "INSERT INTO Users (Username, Password, Usertypeid) VALUES (:username, :password, :usertype)";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':username', $username);
+$stmt->bindParam(':mail', $mail);
 $stmt->bindParam(':password', $hashedPassword);
 $stmt->bindParam(':usertype', $usertype);
 
@@ -100,7 +102,7 @@ $stmt->execute();
 
 return 0; // Ritorna 0 se l'inserimento è avvenuto con successo
 ```
-- Viene preparata una query SQL per inserire i dati nella tabella `Users`. Si utilizzano dei placeholder `:username`, `:password`, `:usertype` che verranno sostituiti con i valori effettivi tramite `bindParam`.
+- Viene preparata una query SQL per inserire i dati nella tabella `Users`. Si utilizzano dei placeholder `:username`, `:mail`, `:password`, `:usertype` che verranno sostituiti con i valori effettivi tramite `bindParam`.
 - La funzione `password_hash` viene utilizzata per criptare la password prima di essere salvata nel database per garantire maggiore sicurezza.
 - La query viene eseguita attraverso `$stmt->execute()`.
 - Se non ci sono errori e l'inserimento avviene con successo arriva fino al return e ritorna 0.
@@ -206,4 +208,93 @@ if ($Dati["action"] == "getUserTypes") {
 
 
 # VIEW registrazione utente - register.php
+
+Creiamo ora una nuova pagina chiamata register.php simile a login.php per permettere all'utente la registrazione
+
+```html
+    <?php include_once 'header.php' ?>
+    <?php include_once 'navbar.php' ?>
+
+    <script src="./js/register.js"></script>
+
+    <div class="row w-100">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 justify-content-center">
+            <form id="registrationForm">
+                <label class="w-25">Username: </label> <input type="text" id="username" class=" form-control w-100 my-2"> <br>
+                <label class="w-25">Password: </label> <input type="password" id="password" class=" form-control w-100 my-2"> <br>
+                <label class="w-25">User Type: </label>
+                <select id="userType" class="form-control w-100 my-2">
+                    <!-- Opzioni per gli user types verranno caricate dinamicamente con JavaScript -->
+                </select> <br>
+                <input type="button" class="btn btn-success w-100 mt-3" onclick="registerUser()" value="Registrati">  
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <?php include_once 'footer.php' ?>
+```
+Come si nota l'aggiunta maggiore è quella di una select inizialmente vuota. Il suo ID è `userTypeSelect`. Sarà poi riempita dinamicamente utilizzando JavaScript. Questo significa che, attraverso JavaScript, andremo a popolare le opzioni all'interno della select box con i tipi di utenti disponibili nel sistema, recuperati dal backend tramite una chiamata AJAX.
+
+Una volta che le opzioni sono state caricate nella select, l'utente potrà selezionare il tipo di utente desiderato e poi fare clic sul pulsante "Registrati" per inviare i dati al server e completare il processo di registrazione.
+
+Da notare che il js collegato è register.js che sarà fornito di seguito
+
+# register.js - caricamento dinamico dei tipi di utenti
+
+
+```js
+document.addEventListener("DOMContentLoaded", function() {
+    
+    userTypeGenerator();
+    
+});
+
+async function userTypeGenerator(){
+
+    let dati={};
+    dati.action="getUserTypes";
+    url="./Control/userControl.php";
+
+    let obj = await fetch(url,
+    {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dati)
+    }).then((response) => response.json())
+    .then((data) => {
+        
+        if (!('error' in data)) {
+
+           data.forEach(element => {
+                let newOption = document.createElement("option");
+                newOption.value = element.Usertypeid;
+                newOption.innerText = element.Type;
+                document.getElementById("userType").appendChild(newOption);
+           });
+        }
+        
+    })
+}
+
+```
+
+Questo codice JavaScript è progettato per popolare dinamicamente le opzioni di una select box nell'HTML.
+
+1. **DOMContentLoaded:** Questo evento indica che viene chiamata la funzione `userTypeGenerator()` solo quando la pagina è completamente caricata.
+
+2. **userTypeGenerator():** Questa funzione si occupa di ottenere i dati degli user types dal server. Utilizza l'oggetto `fetch` per inviare una richiesta POST al server (`./Control/userControl.php`) per ottenere l'elenco degli user types. I dati sono inviati e ricevuti nel formato JSON.
+
+3. **Risposta del server:** Se la richiesta al server ha successo, la funzione riceve i dati degli user types come oggetto JSON. Controlla se non ci sono errori (verificando se non c'è la chiave 'error' nell'oggetto ricevuto). Se non ci sono errori, itera attraverso ogni elemento dell'array ricevuto.
+
+4. **Popolamento della select box:** Per ogni elemento nell'array ricevuto, la funzione crea un nuovo elemento `<option>` per la select box. Imposta il valore (`value`) dell'opzione come Usertypeid e il testo mostrato all'utente (`innerText`) come Type. Queste opzioni vengono poi aggiunte come figli dell'elemento select box con id "userType".
+
+In sintesi, questo script attende il caricamento completo della pagina e, una volta caricato, invia una richiesta al server per ottenere gli user types e li visualizza come opzioni all'interno della select box nell'HTML.
+
+
+# register.js - registrazione di un utente
 
