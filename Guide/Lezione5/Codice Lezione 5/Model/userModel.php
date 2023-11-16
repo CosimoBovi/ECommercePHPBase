@@ -23,9 +23,9 @@ function login($user, $pass) {
 
 function testLogin(){
     if(isset($_SESSION["username"])){
-        return $_SESSION["username"];
+        return $_SESSION;
     }else{
-        return "";
+        return [];
     }
 }
 
