@@ -16,7 +16,7 @@
     if ($Dati["action"] == "userInfo") {
         
         $risultato = testLogin();
-        echo json_encode(['username'=>$risultato]);
+        echo json_encode($risultato);
 
 
     }

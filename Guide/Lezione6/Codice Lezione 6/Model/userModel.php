@@ -15,7 +15,7 @@ function login($user, $pass) {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $conn->prepare("SELECT Username, Password FROM Users WHERE Username = :username");
+        $stmt = $conn->prepare("SELECT * FROM Users WHERE Username = :username");
         $stmt->bindParam(':username', $user);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,6 +28,8 @@ function login($user, $pass) {
 
         if (password_verify($pass, $hashedPassword)) {
             $_SESSION["username"]=$user;
+            $_SESSION["userID"]=$result['UserID'];
+            $_SESSION["usertypeID"]=$result['Usertypeid'];
             return 0; // Accesso riuscito
         } else {
             return 3; // Password errata
@@ -39,9 +41,9 @@ function login($user, $pass) {
 
 function testLogin(){
     if(isset($_SESSION["username"])){
-        return $_SESSION["username"];
+        return $_SESSION;
     }else{
-        return "";
+        return [];
     }
 }
 
