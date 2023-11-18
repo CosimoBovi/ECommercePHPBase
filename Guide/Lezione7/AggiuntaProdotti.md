@@ -131,3 +131,35 @@ Certamente, ecco una spiegazione a punti del codice "insertProduct":
 7. **Risposta in base all'autenticazione:** Se l'utente non supera con successo i controlli di autenticazione o tipologia, il controllo restituirà un codice di errore specifico (3). Ciò indica che l'utente non è autorizzato a eseguire l'azione di inserimento del prodotto.
 
 Questa struttura di controllo garantisce che solo venditori autenticati e autorizzati possano aggiungere nuovi prodotti al database, contribuendo alla sicurezza e all'integrità del sistema di gestione dei prodotti.
+
+# View insertProduct.php
+
+Passiamo ora alla view, come sempre ci concentreremo prima sul form per poi passare al js
+
+```php
+    <?php include_once 'header.php' ?>
+    <?php include_once 'navbar.php' ?>
+    
+    <script src="./js/login.js"></script>
+    
+    <div class="row w-100">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 justify-content-center">
+            <form id="productForm">
+                <label class="w-25">Nome: </label>
+                <input type="text" id="productName" class="form-control w-100 my-2">
+                
+                <label class="w-25">Descrizione: </label>
+                <textarea id="productDescription" class="form-control w-100 my-2"></textarea>
+                
+                <label class="w-25">Prezzo Unitario: </label>
+                <input type="number" id="productPrice" class="form-control w-100 my-2">
+                
+                <input type="button" class="btn btn-success w-100 mt-3" onclick="insertProduct()" value="Inserisci Prodotto">
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    
+    <?php include_once 'footer.php' ?>
+```
