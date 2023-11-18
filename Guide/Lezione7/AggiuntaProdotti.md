@@ -140,7 +140,7 @@ Passiamo ora alla view, come sempre ci concentreremo prima sul form per poi pass
     <?php include_once 'header.php' ?>
     <?php include_once 'navbar.php' ?>
     
-    <script src="./js/login.js"></script>
+    <script src="./js/insertProduct.js"></script>
     
     <div class="row w-100">
         <div class="col-md-3"></div>
@@ -163,3 +163,6 @@ Passiamo ora alla view, come sempre ci concentreremo prima sul form per poi pass
     
     <?php include_once 'footer.php' ?>
 ```
+
+La struttura è simile a quella vista in [VIEW login.php](Guide/Lezione2/MVC.md#viewloginphp), per la spiegazione si rimanda quindi al link corrispondente.
+
