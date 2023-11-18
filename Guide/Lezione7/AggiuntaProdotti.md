@@ -40,7 +40,7 @@ Ecco una spiegazione dettagliata dei campi della query fornita:
 Creaiamo ora il file productModel.php all'interno della cartella che contiene i Model e iniziamo scrivendo la funzione per inserire un nuovo prodotto.
 
 ```php
-function insertProduct($name, $description, $unitPrice, $imageLink, $userSellerID) {
+function insertProduct($name, $description, $unitPrice, $userSellerID) {
     $servername = "localhost";
     $dbname = "ecommercedb";
     $dbusername = "root";
@@ -49,6 +49,9 @@ function insertProduct($name, $description, $unitPrice, $imageLink, $userSellerI
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Imposta il link dell'immagine inizialmente a NULL
+        $imageLink = null;
 
         // Query per l'inserimento del prodotto
         $sql = "INSERT INTO Products (Name, Description, UnitPrice, ImageLink, UserSellerID) VALUES (:name, :description, :unitPrice, :imageLink, :userSellerID)";
@@ -79,8 +82,7 @@ function insertProduct($name, $description, $unitPrice, $imageLink, $userSellerI
 }
 ```
 
-
-Questa funzione `insertProduct` prende in input i dettagli del prodotto e tenta di inserirli nella tabella `Products` del database. La struttura è molto simile a quella della funzione `insertUser` per l'inserimento dell'utente, ma adattata per i dettagli specifici del prodotto, come il nome, la descrizione, il prezzo, il link dell'immagine e l'ID del venditore. Se l'inserimento ha successo, la funzione restituisce `0`, altrimenti restituirà un codice di errore appropriato (ad esempio `1` per un errore generico, `2` per chiave duplicata).
+Questa funzione `insertProduct` prende in input i dettagli del prodotto e tenta di inserirli nella tabella `Products` del database. La struttura è molto simile a quella della funzione `insertUser` per l'inserimento dell'utente, ma adattata per i dettagli specifici del prodotto, come il nome, la descrizione, il prezzo, il link dell'immagine e l'ID del venditore. Se l'inserimento ha successo, la funzione restituisce `0`, altrimenti restituirà un codice di errore appropriato (ad esempio `1` per un errore generico, `2` per chiave duplicata). Per ora impostiamo il link dell'immagine a null, con lo scopo di aggiungere un'immagine al prodotto solo in seguito.
 
 # productControl.php
 
@@ -91,18 +93,17 @@ if ($Dati["action"] == "insertProduct") {
     // Controlla se l'azione richiesta è l'inserimento di un nuovo prodotto
     
     // Verifica se l'utente è loggato e se è un venditore (UsertypeID 2)
-    if(isset($_SESSION["userID"]) && isset($_SESSION["usertypeID"]) && $_SESSION["usertypeID"]==2){
+    if(isset($_SESSION["userID"]) && isset($_SESSION["usertypeID"]) && $_SESSION["usertypeID"] == 2){
         // Se l'utente è loggato come venditore, raccogli i dati del nuovo prodotto
         $name = $Dati["name"];
         $description = $Dati["description"];
         $unitPrice = $Dati["unitPrice"];
-        $imageLink = $Dati["imageLink"];
-    
+        
         // Ottieni l'ID dell'utente venditore dalla sessione
         $userSellerID = $_SESSION["userID"];
         
         // Chiamata alla funzione per l'inserimento del prodotto con i dati forniti
-        $insertionStatus = insertProduct($name, $description, $unitPrice, $imageLink, $userSellerID);
+        $insertionStatus = insertProduct($name, $description, $unitPrice, $userSellerID);
         
         // Restituisci lo stato dell'inserimento come risposta JSON
         echo json_encode(['insertionStatus' => $insertionStatus]);
