@@ -159,6 +159,8 @@ La struttura è simile a quella vista in [VIEW login.php](Guide/Lezione2/MVC.md#
 
 # View insertProduct.js
 
+Per l'inserimento di un prodotto useremo un codice molto simile a quello utilizzato per la [registrazione di un utente](Guide/Lezione5/registrazione.md#registerjs---registrazione-di-un-utente)
+
 ```javascript
 function insertProduct() {
     let productName = document.getElementById('productName').value;
@@ -198,3 +200,6 @@ function insertProduct() {
     });
 }
 ```
+
+
+Il concetto è quello che abbiamo visto anche nelle guide precedenti, con la differenza che controlliamo un codice di errore diverso.
