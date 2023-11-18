@@ -66,18 +66,9 @@ function insertProduct($name, $description, $unitPrice, $userSellerID) {
 
         return 0; // Ritorna 0 se l'inserimento è avvenuto con successo
     } catch(PDOException $e) {
-        $errorCode = $e->getCode();
+       
+        return 1; // Errore generico
 
-        // Verifica il codice di errore per violazione delle chiavi univoche
-        if ($errorCode === '23000' || $errorCode === 1062) {
-            $errorMessage = $e->getMessage();
-
-            if (strpos($errorMessage, 'Duplicate entry') !== false) {
-                return 2; // Codice di errore per chiave duplicata
-            }
-        } else {
-            return 1; // Errore generico
-        }
     }
 }
 ```
@@ -108,8 +99,8 @@ if ($Dati["action"] == "insertProduct") {
         // Restituisci lo stato dell'inserimento come risposta JSON
         echo json_encode(['insertionStatus' => $insertionStatus]);
     } else {
-        // Se l'utente non è loggato come venditore, restituisci un codice di errore (3)
-        echo json_encode(['insertionStatus' => 3]);
+        // Se l'utente non è loggato come venditore, restituisci un codice di errore (9)
+        echo json_encode(['insertionStatus' => 9]);
     }
 }
 ```
@@ -128,7 +119,7 @@ Certamente, ecco una spiegazione a punti del codice "insertProduct":
 
 6. **Esecuzione dell'inserimento:** Una volta ottenuti tutti i dati necessari, chiama la funzione `insertProduct` nel modello dei prodotti, passando i dati ottenuti come argomenti per aggiungere il nuovo prodotto al database.
 
-7. **Risposta in base all'autenticazione:** Se l'utente non supera con successo i controlli di autenticazione o tipologia, il controllo restituirà un codice di errore specifico (3). Ciò indica che l'utente non è autorizzato a eseguire l'azione di inserimento del prodotto.
+7. **Risposta in base all'autenticazione:** Se l'utente non supera con successo i controlli di autenticazione o tipologia, il controllo restituirà un codice di errore specifico (9). Ciò indica che l'utente non è autorizzato a eseguire l'azione di inserimento del prodotto.
 
 Questa struttura di controllo garantisce che solo venditori autenticati e autorizzati possano aggiungere nuovi prodotti al database, contribuendo alla sicurezza e all'integrità del sistema di gestione dei prodotti.
 
@@ -166,3 +157,44 @@ Passiamo ora alla view, come sempre ci concentreremo prima sul form per poi pass
 
 La struttura è simile a quella vista in [VIEW login.php](Guide/Lezione2/MVC.md#viewloginphp), per la spiegazione si rimanda quindi al link corrispondente.
 
+# View insertProduct.js
+
+```javascript
+function insertProduct() {
+    let productName = document.getElementById('productName').value;
+    let productDescription = document.getElementById('productDescription').value;
+    let productPrice = document.getElementById('productPrice').value;
+
+    let productData = {
+        name: productName,
+        description: productDescription,
+        unitPrice: productPrice,
+        action: "insertProduct"
+    };
+
+    let productUrl = "./Control/productControl.php";
+
+    fetch(productUrl, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if(data.insertionStatus === 0) {
+            alert("Prodotto inserito con successo");
+            location.href = "index.php"; // Reindirizziamo l'utente a "index.php".
+        } else if(data.insertionStatus === 1) {
+            alert("Errore");
+        } else if(data.insertionStatus === 9) {
+            alert("Per inserire un prodotto fai l'accesso come venditore");
+        }
+       
+    })
+    .catch((error) => {
+        console.error('Errore durante l\'inserimento del prodotto:', error);
+    });
+}
+```
