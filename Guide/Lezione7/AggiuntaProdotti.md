@@ -86,6 +86,12 @@ Come avevamo fatto precedentemente con gli utenti, creeremo anche un Control per
 ```php
 <?php
 
+// Includi il file del modello prodotto (productModel.php).
+require_once "../Model/productModel.php";
+
+// Leggi i dati inviati dalla richiesta HTTP (in formato JSON) e convertili in un array associativo.
+$Dati = json_decode(file_get_contents('php://input'), true);
+
 if ($Dati["action"] == "insertProduct") {
     // Controlla se l'azione richiesta è l'inserimento di un nuovo prodotto
     
@@ -113,7 +119,7 @@ if ($Dati["action"] == "insertProduct") {
 ?>
 ```
 
-Certamente, ecco una spiegazione a punti del codice "insertProduct":
+La parte iniziale permette di connetterci al Model e recuperare i dati dalla view come avevamo fatto per gli utenti. Il resto del codice è spiegato in seguito:
 
 1. **Controllo dell'azione richiesta:** Inizia controllando se l'azione richiesta è quella di inserire un nuovo prodotto nel sistema. Questo passaggio è identificato tramite la condizione `if ($Dati["action"] == "insertProduct")`.
 
