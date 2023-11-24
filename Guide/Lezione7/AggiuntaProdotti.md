@@ -225,7 +225,9 @@ Il concetto è quello che abbiamo visto anche nelle guide precedenti, con la dif
 
 # Modifiche a navbar.js
 
-Modifichiamo ora il codice di generazione della navbar in navbar.js. Lo scopo sarà permettere ai venditori di visualizzare la pagina di aggiunta del prodotto.
+Modifichiamo ora il codice di generazione della navbar in navbar.js per distinguere le funzioni di venditore e compratore.
+
+L'introduzione di funzioni per distinguere tra venditore e compratore mira a personalizzare l'esperienza utente. Ad esempio, i venditori potranno accedere a strumenti di gestione dei prodotti, mentre gli acquirenti potrebbero visualizzare opzioni di navigazione più orientate all'acquisto.
 
 Vediamo prima tutto il codice con i commenti nei punti aggiunti
 
@@ -423,3 +425,5 @@ function generaNavbarSeller(){
 
 }
 ```
+
+Quindi possiamo concludere dicendo che le nuove funzioni introdotte, come generaNavLink e generaNavbarSeller, sono fondamentali per la creazione dinamica della barra di navigazione. generaNavLink è stata progettata per semplificare la generazione di collegamenti, rendendo più agevole l'aggiunta di nuove voci nella barra di navigazione. D'altra parte, generaNavbarSeller è stata ideata per mostrare solo le opzioni pertinenti ai venditori, come ad esempio l'accesso diretto alla pagina di inserimento prodotti, ottimizzando così la navigazione e l'usabilità per questa categoria di utenti.
