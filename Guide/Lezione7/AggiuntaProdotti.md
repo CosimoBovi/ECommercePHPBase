@@ -84,6 +84,8 @@ Questa funzione `insertProduct` prende in input i dettagli del prodotto e tenta 
 Come avevamo fatto precedentemente con gli utenti, creeremo anche un Control per i prodotti, che gestirà le richieste provenienti dalla View e le indirizzerà al Model. Il control per i prodotti sarà molto simile a quello per gli utenti e consisterà in una serie di if che determineranno l'azione da compiere.
 
 ```php
+<?php
+
 if ($Dati["action"] == "insertProduct") {
     // Controlla se l'azione richiesta è l'inserimento di un nuovo prodotto
     
@@ -107,6 +109,8 @@ if ($Dati["action"] == "insertProduct") {
         echo json_encode(['insertionStatus' => 9]);
     }
 }
+
+?>
 ```
 
 Certamente, ecco una spiegazione a punti del codice "insertProduct":
