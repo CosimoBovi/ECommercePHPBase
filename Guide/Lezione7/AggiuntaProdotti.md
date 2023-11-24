@@ -40,6 +40,8 @@ Ecco una spiegazione dettagliata dei campi della query fornita:
 Creaiamo ora il file productModel.php all'interno della cartella che contiene i Model e iniziamo scrivendo la funzione per inserire un nuovo prodotto.
 
 ```php
+<?php
+
 function insertProduct($name, $description, $unitPrice, $userSellerID) {
     $servername = "localhost";
     $dbname = "ecommercedb";
@@ -71,6 +73,8 @@ function insertProduct($name, $description, $unitPrice, $userSellerID) {
 
     }
 }
+
+?>
 ```
 
 Questa funzione `insertProduct` prende in input i dettagli del prodotto e tenta di inserirli nella tabella `Products` del database. La struttura è molto simile a quella della funzione `insertUser` per l'inserimento dell'utente, ma adattata per i dettagli specifici del prodotto, come il nome, la descrizione, il prezzo, il link dell'immagine e l'ID del venditore. Se l'inserimento ha successo, la funzione restituisce `0`, altrimenti restituirà un codice di errore appropriato (ad esempio `1` per un errore generico, `2` per chiave duplicata). Per ora impostiamo il link dell'immagine a null, con lo scopo di aggiungere un'immagine al prodotto solo in seguito.
