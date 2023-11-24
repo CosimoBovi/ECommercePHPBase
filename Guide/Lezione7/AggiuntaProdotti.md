@@ -390,7 +390,7 @@ function generaNavbar(usertypeID){
 ```
 
 Per ora implementiamo solo la funzione per il venditore, nelle guide successive sarà proposta anche quella per gli acquirenti.
-Prima di farlo però scrivo una funzione per aggiungere un campo alla navbar, perchè è un codice che riutilizzerò molte volte. Il codice mostrato è già stato spiegato in 
+Prima di farlo però scrivo una funzione per aggiungere un campo alla navbar, perchè è un codice che riutilizzerò molte volte. Il codice mostrato è già stato spiegato in [Gestione Navbar con JS](../Lezione3/ControlloLogin.md#implementazione-della-navbar-con-javascript)
 
 ```javascript
 // Per evitare di riscrivere sempre lo stesso codice scrivo 
