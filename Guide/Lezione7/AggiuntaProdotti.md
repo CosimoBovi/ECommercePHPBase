@@ -92,6 +92,9 @@ require_once "../Model/productModel.php";
 // Leggi i dati inviati dalla richiesta HTTP (in formato JSON) e convertili in un array associativo.
 $Dati = json_decode(file_get_contents('php://input'), true);
 
+// Per utilizzare le variabili di sessione usiamo session_start() 
+session_start();
+
 if ($Dati["action"] == "insertProduct") {
     // Controlla se l'azione richiesta è l'inserimento di un nuovo prodotto
     
@@ -112,7 +115,9 @@ if ($Dati["action"] == "insertProduct") {
         echo json_encode(['insertionStatus' => $insertionStatus]);
     } else {
         // Se l'utente non è loggato come venditore, restituisci un codice di errore (9)
-        echo json_encode(['insertionStatus' => 9]);
+        //echo json_encode(['insertionStatus' => 9]);
+        echo json_encode($_SESSION);
+
     }
 }
 
