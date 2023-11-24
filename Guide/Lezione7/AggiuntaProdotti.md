@@ -390,7 +390,7 @@ function generaNavbar(usertypeID){
 ```
 
 Per ora implementiamo solo la funzione per il venditore, nelle guide successive sarà proposta anche quella per gli acquirenti.
-Prima di farlo però scrivo una funzione per aggiungere un campo alla navbar, perchè è un codice che riutilizzerò molte volte. Il codice mostrato è già stato spiegato in [Gestione Navbar con JS](../Lezione3/ControlloLogin.md#implementazione-della-navbar-con-javascript)
+Prima di farlo però scrivo una funzione per aggiungere un campo alla navbar, perchè è un codice che riutilizzerò molte volte. Il codice mostrato è già stato spiegato in [Gestione Navbar con JS](../Lezione3/ControlloLogin.md#implementazione-della-navbar-con-javascript) e consiste nel creare un elemento li e un elemento a che indirizzino alla pagina scelta visualizzando il testo scelto.
 
 ```javascript
 // Per evitare di riscrivere sempre lo stesso codice scrivo 
@@ -406,6 +406,20 @@ function generaNavLink(Pagina, Testo){
     newLi.appendChild(newA);
 
     return newLi;
+
+}
+```
+
+Infine implementiamo la funzione per generare la navbar del venditore, che per ora consisterà soltanto in visualizzare la pagina di inserimento dei prodotti.
+
+```javascript
+function generaNavbarSeller(){
+
+    // Uso la funzione creata per generare un link all'inserimento prodotto
+    
+    let linkProdotto = generaNavLink("./insertProduct.php","Inserisci Prodotto");
+
+    document.getElementById("LeftNavList").appendChild(linkProdotto);
 
 }
 ```
