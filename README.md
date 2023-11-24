@@ -49,4 +49,13 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
 - [Login e Database](Guide/Lezione6/LoginEDatabase.md)
   - [Modifiche a userModel.php](Guide/Lezione6/LoginEDatabase.md#modifiche-a-usermodelphp)
   - [Modifiche a Login.js](Guide/Lezione6/LoginEDatabase.md#modifiche-a-loginjs)
+- [Aggiunta dei prodotti](Guide/Lezione7/AggiuntaProdotti.md)
+   - [Progettazione tabella prodotti](Guide/Lezione7/AggiuntaProdotti.md#progettazione-tabella-prodotti)
+   - [productModel.php](Guide/Lezione7/AggiuntaProdotti.md#productmodelphp)
+   - [productControl.php](Guide/Lezione7/AggiuntaProdotti.md#productcontrolphp)
+   - [View insertProduct.php](Guide/Lezione7/AggiuntaProdotti.md#view-insertproductphp)
+   - [View insertProduct.js](Guide/Lezione7/AggiuntaProdotti.md#view-insertproductjs)
+   - [Modifiche a navbar.js](Guide/Lezione7/AggiuntaProdotti.md#modifiche-a-navbarjs)
+
+
 
