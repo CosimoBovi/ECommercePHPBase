@@ -37,7 +37,7 @@ Ecco una spiegazione dettagliata dei campi della query fornita:
 
 # productModel.php
 
-Creaiamo ora il file productModel.php all'interno della cartella che contiene i Model e iniziamo scrivendo la funzione per inserire un nuovo prodotto.
+Creaiamo ora il file productModel.php **all'interno della cartella che contiene i Model** e iniziamo scrivendo la funzione per inserire un nuovo prodotto.
 
 ```php
 <?php
@@ -81,7 +81,7 @@ Questa funzione `insertProduct` prende in input i dettagli del prodotto e tenta 
 
 # productControl.php
 
-Come avevamo fatto precedentemente con gli utenti, creeremo anche un Control per i prodotti, che gestirà le richieste provenienti dalla View e le indirizzerà al Model. Il control per i prodotti sarà molto simile a quello per gli utenti e consisterà in una serie di if che determineranno l'azione da compiere.
+Come avevamo fatto precedentemente con gli utenti, creeremo anche un Control per i prodotti **all'interno della cartella Control** , che gestirà le richieste provenienti dalla View e le indirizzerà al Model. Il control per i prodotti sarà molto simile a quello per gli utenti e consisterà in una serie di if che determineranno l'azione da compiere.
 
 ```php
 <?php
@@ -133,7 +133,7 @@ Questa struttura di controllo garantisce che solo venditori autenticati e autori
 
 # View insertProduct.php
 
-Passiamo ora alla view, come sempre ci concentreremo prima sul form per poi passare al js
+Passiamo ora alla view, come sempre ci concentreremo prima sul form per poi passare al js. **Ricordiamo che la view va creata direttamente nalla cartella principale e non in sottocartelle**
 
 ```php
     <?php include_once 'header.php' ?>
@@ -167,7 +167,7 @@ La struttura è simile a quella vista in [VIEW login.php](Guide/Lezione2/MVC.md#
 
 # View insertProduct.js
 
-Per l'inserimento di un prodotto useremo un codice molto simile a quello utilizzato per la [registrazione di un utente](Guide/Lezione5/registrazione.md#registerjs---registrazione-di-un-utente)
+Per l'inserimento di un prodotto useremo un codice molto simile a quello utilizzato per la [registrazione di un utente](Guide/Lezione5/registrazione.md#registerjs---registrazione-di-un-utente). **Ricordiamo che il codice va nella cartella js**
 
 ```javascript
 function insertProduct() {
