@@ -83,6 +83,7 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpasswor
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ```
 - La variabile `$servername` rappresenta il server dove è ospitato il database, mentre `$dbname` contiene il nome del database a cui ci si connette.
+- Le varibili `$dbusername` e `$dbpassword` sono le credianzili di accesso al db, visto che non le abbiamo modificate usiamo quelle di default di MySQL.
 - `PDO` è un'interfaccia per lavorare con database in PHP, e qui viene utilizzata per stabilire una connessione al database MySQL.
 - `setAttribute` viene usato per impostare il modo di gestione degli errori durante le operazioni col database. In questo caso, si imposta il livello di errore a `ERRMODE_EXCEPTION`, il che significa che verranno sollevate eccezioni in caso di errori.
 
