@@ -114,10 +114,9 @@ if ($Dati["action"] == "insertProduct") {
         // Restituisci lo stato dell'inserimento come risposta JSON
         echo json_encode(['insertionStatus' => $insertionStatus]);
     } else {
-        // Se l'utente non è loggato come venditore, restituisci un codice di errore (9)
-        //echo json_encode(['insertionStatus' => 9]);
-        echo json_encode($_SESSION);
-
+        Se l'utente non è loggato come venditore, restituisci un codice di errore (9)
+        echo json_encode(['insertionStatus' => 9]);
+        
     }
 }
 
