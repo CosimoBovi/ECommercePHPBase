@@ -109,3 +109,65 @@ In product control come al solito richiamiamo solamento la funzione del model e 
 
 Per semplicità visto che i prodotti sono accessibili a tutti modifico la index.php per permettere di mostrare i prodotti.
 
+```html
+<?php include_once "header.php" ?>
+<?php include_once "navbar.php" ?>
+
+<script src="./js/products.js"></script>
+
+<div class="row mx-4" id="productsList">
+    <h1> Elenco dei prodotti disponibili </h1>
+
+    <ul class="pagination" id="Pages">
+        
+        
+      
+    </ul>
+</div>
+
+
+<?php include_once "footer.php" ?>
+
+
+```
+
+
+```js
+document.addEventListener("DOMContentLoaded", function() {
+    
+    pageGeneration();
+    productView(0);
+    
+});
+
+async function pageGeneration(){
+
+    let dati={};
+    dati.action="getProductsCount";
+    url="./Control/productControl.php";
+
+    let obj = await fetch(url,
+    {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dati)
+    }).then((response) => response.json())
+    .then((data) => {
+        
+        for(let i=0;i<data.productsCount;i++){
+
+            //<li class="page-item"><a class="page-link">1</a></li>
+            let newLi = document.createElement("li");
+            newLi.classList.add("page-item");
+            let newA = document.createElement("a");
+            newA.classList.add("page-link");
+            newA.addEventListener("click", productView(i));
+
+
+        }
+        
+    })
+}```
