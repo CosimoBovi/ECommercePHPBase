@@ -20,7 +20,7 @@ function getProducts($pageNumber, $productsPerPage) {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Calcolo dell'offset per la paginazione
-        $offset = ($pageNumber - 1) * $productsPerPage;
+        $offset = $pageNumber * $productsPerPage;
 
         // Query per estrarre il set di prodotti limitato
         $sql = "SELECT * FROM Products LIMIT :offset, :productsPerPage";
@@ -49,7 +49,7 @@ Analizziamo la function nel dettaglio:
 
 3. **Calcolo dell'Offset per la Paginazione**:
    - L'offset indica da dove iniziare a recuperare i dati all'interno di un set di risultati. Per la paginazione, calcoliamo l'offset basandoci sul numero di prodotti desiderati per pagina e sulla pagina corrente. 
-   - L'offset si calcola moltiplicando il numero della pagina meno uno per il numero di prodotti per pagina. Ad esempio, per la pagina 2 con 10 prodotti per pagina, l'offset sarà 10 (pagina 2 - 1 * 10).
+   - L'offset si calcola moltiplicando il numero della pagina per il numero di prodotti per pagina. Ad esempio, per la pagina 2 con 10 prodotti per pagina, l'offset sarà 20 (pagina 2 * 10).
 
 4. **Utilizzo dell'Offset nella Query SQL**:
    - Nella query SQL, l'offset determina da quale riga iniziare a estrarre i dati. Combinato con `LIMIT`, permette di estrarre solo una sezione specifica dei risultati. 
