@@ -99,7 +99,7 @@ if ($Dati["action"] == "getProducts" && isset($Dati["pageNumber"])) {
 
 if ($Dati["action"] == "getProductsCount"){
     $productsCount=getTotalProductsCount();
-    echo json_encode(['productsCount'] => $productsCount);
+    echo json_encode(['productsCount' => $productsCount]);
 }
 ```
 
