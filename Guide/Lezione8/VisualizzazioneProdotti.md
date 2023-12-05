@@ -61,6 +61,32 @@ Analizziamo la function nel dettaglio:
 
 In sintesi, `getProducts` utilizza `LIMIT` e l'offset per estrarre un numero specifico di prodotti per pagina, migliorando l'usabilità dell'applicazione e ottimizzando la gestione di grandi quantità di dati.
 
+
+Inoltre per gestire bene la visualizazione è necessario scrivere una funzione che ritorni quanti prodotti abbiamo all'interno del nostro database
+
+```php
+function getTotalProductsCount() {
+    $servername = "localhost";
+    $dbname = "ecommercedb";
+    $dbusername = "root";
+    $dbpassword = "";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT COUNT(*) AS total FROM Products"; // Query per il conteggio dei prodotti
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['total']; // Restituisce il numero totale di prodotti
+    } catch(PDOException $e) {
+        return -1; // Gestione degli errori nel caso in cui la query fallisca
+    }
+}
+```
+
 # Aggiunte a ProductControl.php
 
 
@@ -70,9 +96,14 @@ if ($Dati["action"] == "getProducts" && isset($Dati["pageNumber"])) {
     $products = getProducts($Dati["pageNumber"], 9);
     echo json_encode(['products' => $products]);
 }
+
+if ($Dati["action"] == "getProductsCount"){
+    $productsCount=getTotalProductsCount();
+    echo json_encode(['productsCount'] => $productsCount);
+}
 ```
 
-In product control come al solito richiamiamo solamento la funzione del model e ritorniamo un JSON con un echo. 
+In product control come al solito richiamiamo solamento la funzione del model e ritorniamo un JSON con un echo, sia per i prodotti che per il numero totale di prodotti
 
 # Modifiche ad index.php
 
