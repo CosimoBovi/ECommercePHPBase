@@ -56,6 +56,13 @@ Per semplificare il processo di sviluppo e gestione del database, sarà utilizza
    - [View insertProduct.php](Guide/Lezione7/AggiuntaProdotti.md#view-insertproductphp)
    - [View insertProduct.js](Guide/Lezione7/AggiuntaProdotti.md#view-insertproductjs)
    - [Modifiche a navbar.js](Guide/Lezione7/AggiuntaProdotti.md#modifiche-a-navbarjs)
+ 
+- [Visualizzazione Prodotti](Guide/Lezione8/VisualizzazioneProdotti.md)
+   - [Aggiunte a ProductModel.php](Guide/Lezione8/VisualizzazioneProdotti.md#aggiunte-a-productmodelphp)
+   - [Aggiunte a ProductControl.php](Guide/Lezione8/VisualizzazioneProdotti.md#aggiunte-a-productcontrolphp)
+   - [Modifiche ad index.php](Guide/Lezione8/VisualizzazioneProdotti.md#modifiche-ad-indexphp)
+   - [Aggiunta di products.js](Guide/Lezione8/VisualizzazioneProdotti.md#aggiunta-di-productsjs)
+
 
 
 
