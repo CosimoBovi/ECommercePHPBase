@@ -312,4 +312,28 @@ function createCard(Id, Title, Image, Description, Price, isUser){
     document.getElementById("productsList").appendChild(divContainer); // Aggiunta della carta alla lista dei prodotti
 }
 ```
+Vediamo le parti di codice più importanti:
 
+1. **Funzione `productView(pageNumber)`:**
+   - Questa funzione è chiamata quando si seleziona una specifica pagina di prodotti per visualizzarne l'elenco.
+   - `pageNumber` è l'indice della pagina dei prodotti da visualizzare.
+
+2. **Richiesta al Server - Recupero dei Prodotti:**
+   - `dati` contiene le informazioni necessarie per la richiesta al server, inclusa l'azione (`getProducts`) e il numero di pagina.
+   - `fetch(url, {...})` esegue una richiesta asincrona POST al server per ottenere i prodotti da visualizzare sulla pagina specificata.
+
+3. **Creazione delle Carte dei Prodotti:**
+   - `.then((response) => response.json())` converte la risposta del server in formato JSON.
+   - `document.getElementById("productsList").innerHTML="";` svuota l'elemento HTML che conterrà l'elenco dei prodotti per prepararlo alla nuova visualizzazione.
+   - `data.products.forEach(...)` cicla attraverso l'array dei prodotti restituiti dalla richiesta.
+   - `createCard(...)` viene chiamata per ciascun prodotto per creare la struttura HTML della carta dei prodotti.
+
+4. **Funzione `createCard(...)` - Creazione delle Carte dei Prodotti:**
+   - `createCard(...)` genera la struttura HTML per visualizzare ciascun prodotto come una carta.
+   - `divContainer` è un contenitore per ogni carta dei prodotti, con formattazione CSS.
+   - `divCard` rappresenta la carta stessa, con l'aggiunta dell'immagine del prodotto.
+   - `divBody` contiene il corpo della carta con il titolo e la descrizione del prodotto.
+   - Se `isUser` è vero, viene aggiunto un link per dettagliare ulteriormente il prodotto.
+
+5. **Aggiunta alla Pagina HTML:**
+   - `document.getElementById("productsList").appendChild(divContainer);` aggiunge ogni carta dei prodotti all'elemento HTML per l'elenco dei prodotti.
