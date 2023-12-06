@@ -107,36 +107,43 @@ In product control come al solito richiamiamo solamento la funzione del model e 
 
 # Modifiche ad index.php
 
-Per semplicità visto che i prodotti sono accessibili a tutti modifico la index.php per permettere di mostrare i prodotti.
+Visto che i prodotti sono accessibili a tutti modifichiamo la index.php per permettere di mostrare i prodotti.
 
 ```html
-
 <?php include_once "header.php" ?>
 <?php include_once "navbar.php" ?>
 
+<!-- Collegamento al file JavaScript per gestire la visualizzazione dei prodotti -->
 <script src="./js/products.js"></script>
 
+<!-- Sezione principale dell'interfaccia utente -->
 <div class="mx-4" style="flex: 1" id="productSection">
 
+    <!-- Intestazione che indica l'elenco dei prodotti disponibili -->
     <h3> Elenco dei prodotti disponibili </h3>
     
+    <!-- Div in cui verranno visualizzati i prodotti -->
     <div class="row" id="productsList">
 
     </div>
     
-   
 </div>
 
+<!-- Paginazione per navigare tra le pagine dei prodotti -->
 <ul class="pagination mt-auto justify-content-center" id="Pages">
           
 </ul>
 
+<!-- Inclusione del file footer.php per i contenuti aggiuntivi -->
 <?php include_once "footer.php" ?>
-
-
-
 ```
 
+Quindi abbiamo aggiunto una serie di sezioni collegate con degli id che saranno gestiti dal js, allo scopo di mostrare i prodotti estratti dal database.
+
+
+# Aggiunta di products.js
+
+Il codice per mostrare i prodotti in JS è molto corposo però è anche molto ripetitivo e sfrutta elementi che abbiamo visto in precedenza. La motivazione della lunghezza del codice va ritrovata sopratutto nelle card di bootstrap, che sono un elemento utile ma che richiede molto codice.
 
 ```js
 
