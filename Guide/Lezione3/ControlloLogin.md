@@ -98,6 +98,8 @@ Ora spieghiamo ciascun elemento aggiunto:
 Ora che abbiamo configurato il nostro backend PHP e definito le funzioni necessarie per la gestione degli utenti, concentreremo la nostra attenzione sul lato frontend. La navbar, elemento essenziale di qualsiasi sito, sarà resa dinamica attraverso l'uso di JavaScript.
 
 ```javascript
+let user=[];
+
 document.addEventListener("DOMContentLoaded", function() {
     // Al caricamento della pagina, chiamiamo la funzione per visualizzare la navbar.
     visualizzaNavbar();
