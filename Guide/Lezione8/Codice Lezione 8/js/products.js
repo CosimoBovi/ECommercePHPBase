@@ -122,7 +122,7 @@ function createCard(Id, Title,Image,Description,Price,isUser){
         let newLi = document.createElement("a");
         newLi.classList.add("btn");
         newLi.classList.add("btn-primary");
-        newLi.href="./productDetails?ProductID="+Id;
+        newLi.href="./productDetails.php?ProductID="+Id;
         newLi.innerText="Dettagli Prodotto";
         divBody.appendChild(newLi);
     }
